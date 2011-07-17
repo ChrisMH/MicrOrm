@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrORM", "MicrORM\MicrORM.csproj", "{F8B877FE-DA09-45D6-883A-75D613DCDD6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrOrm", "MicrOrm\MicrOrm.csproj", "{F8B877FE-DA09-45D6-883A-75D613DCDD6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrORM.Test", "MicrORM.Test\MicrORM.Test.csproj", "{9F81DACA-49B6-4E69-A939-E5E60374D4E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrOrm.Test", "MicrOrm.Test\MicrOrm.Test.csproj", "{9F81DACA-49B6-4E69-A939-E5E60374D4E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

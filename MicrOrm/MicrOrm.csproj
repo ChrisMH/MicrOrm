@@ -8,8 +8,8 @@
     <ProjectGuid>{F8B877FE-DA09-45D6-883A-75D613DCDD6D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MicrORM</RootNamespace>
-    <AssemblyName>MicrORM</AssemblyName>
+    <RootNamespace>MicrOrm</RootNamespace>
+    <AssemblyName>MicrOrm</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

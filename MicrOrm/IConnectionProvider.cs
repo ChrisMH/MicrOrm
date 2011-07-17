@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace MicrORM
+namespace MicrOrm
 {
   public interface IConnectionProvider
   {

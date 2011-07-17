@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.Common;
 
-namespace MicrORM
+namespace MicrOrm
 {
   public class ConnectionProvider : IConnectionProvider
   {
