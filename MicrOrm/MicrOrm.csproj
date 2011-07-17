@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionProvider.cs" />
-    <Compile Include="IConnectionProvider.cs" />
+    <Compile Include="Core\MoConnectionProvider.cs" />
+    <Compile Include="Core\MoDatabase.cs" />
+    <Compile Include="IMoConnectionProvider.cs" />
+    <Compile Include="IMoDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,7 @@
 
 namespace MicrOrm
 {
-  public interface IConnectionProvider
+  public interface IMoConnectionProvider
   {
     DbConnection CreateConnection();
 
