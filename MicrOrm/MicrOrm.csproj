@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\MoColumnAttribute.cs" />
     <Compile Include="Core\MoConnectionProvider.cs" />
     <Compile Include="Core\MoDatabase.cs" />
+    <Compile Include="Core\MoException.cs" />
+    <Compile Include="Core\ObjectMapper.cs" />
     <Compile Include="IMoConnectionProvider.cs" />
     <Compile Include="IMoDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

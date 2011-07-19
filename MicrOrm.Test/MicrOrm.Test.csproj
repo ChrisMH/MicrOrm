@@ -44,6 +44,9 @@
     <Reference Include="Mono.Security">
       <HintPath>..\ThirdParty\Npgsql\Mono.Security.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\ThirdParty\Npgsql\Npgsql.dll</HintPath>
     </Reference>
@@ -65,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MoConnectionProviderTest.cs" />
+    <Compile Include="MoDatabaseQueryTest.cs" />
     <Compile Include="MoDatabaseTest.cs" />
+    <Compile Include="ObjectMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\IDatabaseUtility.cs" />
     <Compile Include="Utility\SqlServerCeDatabaseUtility.cs" />
