@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.Common;
 
 namespace MicrOrm.Core
@@ -12,7 +13,8 @@ namespace MicrOrm.Core
     public MoConnectionProvider(string connectionStringName)
     {
       ConnectionString = new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString };
-      ProviderFactory = DbProviderFactories.GetFactory(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName);
+      ProviderName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+      ProviderFactory = DbProviderFactories.GetFactory(ProviderName);
     }
 
     /// <summary>
@@ -23,6 +25,7 @@ namespace MicrOrm.Core
     public MoConnectionProvider(DbConnectionStringBuilder connectionString, string providerName)
     {
       ConnectionString = connectionString;
+      ProviderName = providerName;
       ProviderFactory = DbProviderFactories.GetFactory(providerName);
     }
 
@@ -34,8 +37,10 @@ namespace MicrOrm.Core
     public MoConnectionProvider(string connectionString, string providerName)
     {
       ConnectionString = new DbConnectionStringBuilder { ConnectionString = connectionString };
+      ProviderName = providerName;
       ProviderFactory = DbProviderFactories.GetFactory(providerName);
     }
+    
     /// <summary>
     /// Creates a connection using the class settings.
     /// </summary>
@@ -48,6 +53,17 @@ namespace MicrOrm.Core
     }
 
     public DbConnectionStringBuilder ConnectionString { get; private set; }
+    public string ProviderName { get; private set; }
     public DbProviderFactory ProviderFactory { get; private set; }
+
+    
+    public IMoDatabase Database
+    {
+      get
+      {
+        return new MoDatabase(this);
+      }
+    }
+
   }
 }

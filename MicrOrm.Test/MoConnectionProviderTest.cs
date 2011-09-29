@@ -1,84 +1,122 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using MicrOrm.Core;
-using Xunit;
-using Xunit.Extensions;
+using MicrOrm.Test.Utility;
+using System.Reflection;
+using NUnit.Framework;
 
 namespace MicrOrm.Test
 {
+  [TestFixture]
   public class MoConnectionProviderTest
   {
-    [Theory]
-    [InlineData("SqlServerCe.Connection")]
-    [InlineData("SQLite.dotConnect.Connection")]
-    [InlineData("PostgreSQL.dotConnect.Connection")]
-    [InlineData("PostgreSQL.Npgsql.Connection")]
-    public void can_create_with_connection_name(string connectionStringName)
+    [TestCase("SqlServerCe.Connection")]
+    [TestCase("System.Data.SQLite.Connection")]
+    [TestCase("Devart.Data.SQLite.Connection")]
+    [TestCase("Npgsql.Connection")]
+    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    public void CanCreateWithConnectionName(string connectionStringName)
     {
-      var provider = new MoConnectionProvider(connectionStringName);
+      Console.WriteLine(connectionStringName);
+
+      var provider = (IMoConnectionProvider) new MoConnectionProvider(connectionStringName);
 
       Assert.NotNull(provider);
-      Assert.NotNull(provider.ConnectionString);
+
       Assert.NotNull(provider.ProviderFactory);
-      Assert.Equal(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString},
+      Assert.AreEqual(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName, provider.ProviderName);
+      Assert.AreEqual(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
                    provider.ConnectionString);
     }
 
-    [Theory]
-    [InlineData("SqlServerCe.Connection")]
-    [InlineData("SQLite.dotConnect.Connection")]
-    [InlineData("PostgreSQL.dotConnect.Connection")]
-    [InlineData("PostgreSQL.Npgsql.Connection")]
-    public void can_create_with_connection_string_and_provider_name(string connectionStringName)
+    [TestCase("SqlServerCe.Connection")]
+    [TestCase("System.Data.SQLite.Connection")]
+    [TestCase("Devart.Data.SQLite.Connection")]
+    [TestCase("Npgsql.Connection")]
+    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    public void CanCreateWithConnectionStringAndProviderName(string connectionStringName)
     {
-      var provider = new MoConnectionProvider(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString,
-                                            ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName);
+      Console.WriteLine(connectionStringName);
+
+      var provider = (IMoConnectionProvider) new MoConnectionProvider(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString,
+                                                                      ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName);
 
       Assert.NotNull(provider);
-      Assert.NotNull(provider.ConnectionString);
+
       Assert.NotNull(provider.ProviderFactory);
-      Assert.Equal(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
+      Assert.AreEqual(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName, provider.ProviderName);
+      Assert.AreEqual(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
                    provider.ConnectionString);
     }
 
-    [Theory]
-    [InlineData("SqlServerCe.Connection")]
-    [InlineData("SQLite.dotConnect.Connection")]
-    [InlineData("PostgreSQL.dotConnect.Connection")]
-    [InlineData("PostgreSQL.Npgsql.Connection")]
-    public void can_create_with_connection_string_builder_and_provider_name(string connectionStringName)
+    [TestCase("SqlServerCe.Connection")]
+    [TestCase("System.Data.SQLite.Connection")]
+    [TestCase("Devart.Data.SQLite.Connection")]
+    [TestCase("Npgsql.Connection")]
+    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    public void CanCreateWithConnectionStringBuilderAndProviderName(string connectionStringName)
     {
-      var provider = new MoConnectionProvider(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString},
-                                            ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName);
+      Console.WriteLine(connectionStringName);
+
+      var provider =
+      (IMoConnectionProvider)
+      new MoConnectionProvider(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
+                               ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName);
 
       Assert.NotNull(provider);
-      Assert.NotNull(provider.ConnectionString);
+
       Assert.NotNull(provider.ProviderFactory);
-      Assert.Equal(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
+      Assert.AreEqual(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName, provider.ProviderName);
+      Assert.AreEqual(new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString },
                    provider.ConnectionString);
     }
-    [Theory]
-    [InlineData("SqlServerCe.Connection")]
-    [InlineData("SQLite.dotConnect.Connection")]
-    [InlineData("PostgreSQL.dotConnect.Connection")]
-    [InlineData("PostgreSQL.Npgsql.Connection")]
-    public void can_create_connection(string connectionStringName)
+
+    [TestCase("SqlServerCe.Connection")]
+    [TestCase("System.Data.SQLite.Connection")]
+    [TestCase("Devart.Data.SQLite.Connection")]
+    [TestCase("Npgsql.Connection")]
+    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    public void CanCreateConnection(string connectionStringName)
     {
+      Console.WriteLine(connectionStringName);
+
       var provider = new MoConnectionProvider(connectionStringName);
 
       var connection = provider.CreateConnection();
 
       Assert.NotNull(connection);
-      Assert.Equal(ConnectionState.Closed, connection.State);
+      Assert.AreEqual(ConnectionState.Closed, connection.State);
 
-      var connectionStringActual = new DbConnectionStringBuilder {ConnectionString = connection.ConnectionString};
-      
+      var connectionStringActual = new DbConnectionStringBuilder { ConnectionString = connection.ConnectionString };
+
       foreach (string key in provider.ConnectionString.Keys)
       {
         Assert.True(connectionStringActual.ContainsKey(key));
-        Assert.Equal(provider.ConnectionString[key], connectionStringActual[key]);
+        Assert.AreEqual(provider.ConnectionString[key], connectionStringActual[key]);
       }
+    }
+
+    //[TestCase(typeof(SqlServerCeDatabaseUtility))]
+    //[TestCase(typeof(SystemDataSqLiteDatabaseUtility))]
+    //[TestCase(typeof(DevartDataSqLiteDatabaseUtility))]
+    [TestCase(typeof(NpgsqlPostgreSqlDatabaseUtility))]
+    //[TestCase(typeof(DevartDataPostgreSqlDatabaseUtility))]
+    public void CanCreateDatabase(Type databaseUtilityType)
+    {       
+      Console.WriteLine(databaseUtilityType.FullName);
+
+      var databaseUtility = ( IDatabaseUtility )databaseUtilityType.Assembly.CreateInstance(databaseUtilityType.FullName, false, BindingFlags.CreateInstance, null, null, null, null);
+      databaseUtility.CreateDatabase();
+
+      using (var db = databaseUtility.ConnectionProvider.Database)
+      {
+        Assert.NotNull(db);
+        Assert.True(db.Connection.State == ConnectionState.Open);
+      }
+
+      databaseUtility.DestroyDatabase();
     }
   }
 }

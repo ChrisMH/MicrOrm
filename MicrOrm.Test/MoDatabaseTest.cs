@@ -4,25 +4,28 @@ using System.Data.Common;
 using System.Reflection;
 using MicrOrm.Core;
 using MicrOrm.Test.Utility;
-using Xunit;
-using Xunit.Extensions;
+using NUnit.Framework;
 
 namespace MicrOrm.Test
 {
-  public class MoDatabaseTest : IDisposable
+  [TestFixture]
+  public class MoDatabaseTest
   {
     public MoDatabaseTest()
     {
     }
 
-    public void Dispose()
-    {
-    }
 
-    [Theory]
-    [InlineData(typeof(SqlServerCeDatabaseUtility))]
+    [Test]
+    [TestCase(typeof(SqlServerCeDatabaseUtility))]
+    [TestCase(typeof(SystemDataSqLiteDatabaseUtility))]
+    [TestCase(typeof(DevartDataSqLiteDatabaseUtility))]
+    [TestCase(typeof(NpgsqlPostgreSqlDatabaseUtility))]
+    [TestCase(typeof(DevartDataPostgreSqlDatabaseUtility))]
     public void database_instance_opens_and_closes_database(Type databaseUtilityType)
     {
+      Console.WriteLine(databaseUtilityType.FullName);
+
       var databaseUtility = ( IDatabaseUtility )databaseUtilityType.Assembly.CreateInstance(databaseUtilityType.FullName, false, BindingFlags.CreateInstance, null, null, null, null);
       databaseUtility.CreateDatabase();
 
@@ -32,11 +35,11 @@ namespace MicrOrm.Test
         Assert.NotNull(db);
         Assert.NotNull(db.ConnectionProvider);
         Assert.NotNull(db.Connection);
-        Assert.Equal(ConnectionState.Open, db.Connection.State);
+        Assert.AreEqual(ConnectionState.Open, db.Connection.State);
         connection = db.Connection;
       }
 
-      Assert.Equal(ConnectionState.Closed, connection.State);
+      Assert.AreEqual(ConnectionState.Closed, connection.State);
 
       databaseUtility.DestroyDatabase();
     }
