@@ -14,7 +14,7 @@ namespace MicrOrm.Core
       var expando = new ExpandoObject() as IDictionary<string, object>;
       for(var i = 0 ; i < rdr.FieldCount ; i++)
       {
-        expando.Add(MapFieldNameToFriendlyName(rdr.GetName(i)), Convert.ChangeType(rdr[i], rdr.GetFieldType(i)));
+        expando.Add(MapFieldNameToFriendlyName(rdr.GetName(i)), rdr.IsDBNull(i) ? null : Convert.ChangeType(rdr[i], rdr.GetFieldType(i)));
       }
       return expando;
     }

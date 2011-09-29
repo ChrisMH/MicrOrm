@@ -50,10 +50,13 @@ namespace MicrOrm.Core
           break;
         }
 
-        var endIndex = sql.IndexOf(' ', startIndex);
-        if (endIndex < 0)
+        var endIndex = startIndex + 2;
+        for(; endIndex < sql.Length ; endIndex++)
         {
-          endIndex = sql.Length;
+          if(!Char.IsNumber(sql[endIndex]))
+          {
+            break;
+          }
         }
 
         var parameterName = sql.Substring(startIndex + 1, endIndex - (startIndex + 1));

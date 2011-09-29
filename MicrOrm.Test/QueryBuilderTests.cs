@@ -80,6 +80,7 @@ namespace MicrOrm.Test
     [TestCase(" :p0 :p1", 2)]
     [TestCase(":p0 :p1 ", 2)]
     [TestCase(" :p0 :p1 ", 2)]
+    [TestCase(" :p0 :p1)", 2)]
     [TestCase(":p0 :p0", 1)]
     [TestCase(" :p0 :p0", 1)]
     [TestCase(":p0 :p0 ", 1)]

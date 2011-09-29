@@ -34,8 +34,7 @@ namespace MicrOrm.Test
         {
           Assert.NotNull(row.Id);
           Assert.NotNull(row.Name);
-          Assert.NotNull(row.Email);
-          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email);
+          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email ?? "NULL");
         }
       }
     }
@@ -54,12 +53,12 @@ namespace MicrOrm.Test
         {
           Assert.NotNull(row.Id);
           Assert.NotNull(row.Name);
-          Assert.NotNull(row.Email);
-          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email);
+          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email ?? "NULL");
         }
       }
     }
-        [Test]
+
+    [Test]
     public void CanExecuteReaderForFunction()
     {
       using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
@@ -72,12 +71,28 @@ namespace MicrOrm.Test
         foreach (var row in result)
         {
           Assert.NotNull(row.Name);
-          Assert.NotNull(row.Email);
-          Console.WriteLine("{0}, {1}", row.Name, row.Email);
+          Console.WriteLine("{0}, {1}", row.Name, row.Email ?? "NULL");
         }
       }
     }
 
+    [Test]
+    public void CanExecuteReaderForParameterizedFunction()
+    {
+      using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
+      {
+        var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", new int[] {1, 3}).ToList();
+
+        Assert.NotNull(result);
+        Assert.AreEqual(2, result.Count);
+
+        foreach (var row in result)
+        {
+          Assert.NotNull(row.Name);
+          Console.WriteLine("{0}, {1}", row.Name, row.Email ?? "NULL");
+        }
+      }
+    }
     private IDatabaseUtility databaseUtility = new NpgsqlPostgreSqlDatabaseUtility();
   }
 }
