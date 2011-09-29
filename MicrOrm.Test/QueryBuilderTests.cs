@@ -92,10 +92,10 @@ namespace MicrOrm.Test
       Assert.AreEqual(expectedCount, result.Count);
     }
 
-    [TestCase(":p0b")]
-    [TestCase(" :p0b")]
-    [TestCase(":p0b ")]
-    [TestCase(" :p0b ")]
+    [TestCase(":pa")]
+    [TestCase(" :pa")]
+    [TestCase(":pa ")]
+    [TestCase(" :pa ")]
     public void FindUniqueParametersThrowsIfParameterFormatIsInvalid(string sql)
     {
       Console.WriteLine(Assert.Throws<ArgumentException>(() => QueryBuilder.FindUniqueParameters(sql)).Message);
