@@ -15,8 +15,6 @@ namespace MicrOrm.Test
     {
     }
 
-
-    [Test]
     [TestCase(typeof(SqlServerCeDatabaseUtility))]
     [TestCase(typeof(SystemDataSqLiteDatabaseUtility))]
     [TestCase(typeof(DevartDataSqLiteDatabaseUtility))]
@@ -27,7 +25,7 @@ namespace MicrOrm.Test
       Console.WriteLine(databaseUtilityType.FullName);
 
       var databaseUtility = ( IDatabaseUtility )databaseUtilityType.Assembly.CreateInstance(databaseUtilityType.FullName, false, BindingFlags.CreateInstance, null, null, null, null);
-      databaseUtility.CreateDatabase();
+      databaseUtility.CreateDatabase(null);
 
       DbConnection connection = null;
       using( var db = new MoDatabase( databaseUtility.ConnectionProvider))

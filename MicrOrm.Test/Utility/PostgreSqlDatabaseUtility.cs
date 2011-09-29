@@ -1,10 +1,11 @@
-﻿using MicrOrm.Core;
+﻿using System.Data;
+using MicrOrm.Core;
 
 namespace MicrOrm.Test.Utility
 {
-  public class PostgreSqlDatabaseUtility : IDatabaseUtility
+  public abstract class PostgreSqlDatabaseUtility : IDatabaseUtility
   {
-    public PostgreSqlDatabaseUtility( string connectionStringName )
+    public PostgreSqlDatabaseUtility(string connectionStringName)
     {
       Provider = new MoConnectionProvider(connectionStringName);
 
@@ -12,16 +13,31 @@ namespace MicrOrm.Test.Utility
       CreateProvider.ConnectionString["database"] = "postgres";
     }
 
-    public IMoConnectionProvider ConnectionProvider { get { return Provider; } }
-    
-    public void CreateDatabase()
+    public IMoConnectionProvider ConnectionProvider
     {
-      using( var conn = CreateProvider.CreateConnection())
+      get { return Provider; }
+    }
+
+    public virtual void CreateDatabase(string initializationSql)
+    {
+      DestroyDatabase();
+      using (var conn = CreateProvider.CreateConnection())
       {
         conn.Open();
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = string.Format("CREATE DATABASE {0}", Provider.ConnectionString["database"]);
-        cmd.ExecuteNonQuery();
+        using (var cmd = conn.CreateCommand())
+        {
+          cmd.CommandText = string.Format("CREATE DATABASE {0}", Provider.ConnectionString["database"]);
+          cmd.ExecuteNonQuery();
+        }
+      }
+
+      if (initializationSql != null)
+      {
+        using (var conn = Provider.CreateConnection())
+        {
+          conn.Open();
+          Initialize(conn, initializationSql);
+        }
       }
     }
 
@@ -30,13 +46,19 @@ namespace MicrOrm.Test.Utility
       using (var conn = CreateProvider.CreateConnection())
       {
         conn.Open();
-        var cmd = conn.CreateCommand();
-        cmd.CommandText = string.Format("DROP DATABASE IF EXISTS {0}", Provider.ConnectionString["database"]);
-        cmd.ExecuteNonQuery();
+        using (var cmd = conn.CreateCommand())
+        {
+          cmd.CommandText = string.Format("DROP DATABASE IF EXISTS {0}", Provider.ConnectionString["database"]);
+          cmd.ExecuteNonQuery();
+        }
       }
     }
 
-    
+    protected virtual void Initialize(IDbConnection conn, string initializationSql)
+    {
+    }
+
+
     protected IMoConnectionProvider Provider { get; private set; }
     protected IMoConnectionProvider CreateProvider { get; private set; }
   }

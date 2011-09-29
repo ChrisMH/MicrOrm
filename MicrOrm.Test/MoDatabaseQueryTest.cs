@@ -5,6 +5,6 @@ namespace MicrOrm.Test
   [TestFixture]
   public class MoDatabaseQueryTest
   {
-     
+    
   }
 }

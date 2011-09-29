@@ -108,7 +108,7 @@ namespace MicrOrm.Test
       Console.WriteLine(databaseUtilityType.FullName);
 
       var databaseUtility = ( IDatabaseUtility )databaseUtilityType.Assembly.CreateInstance(databaseUtilityType.FullName, false, BindingFlags.CreateInstance, null, null, null, null);
-      databaseUtility.CreateDatabase();
+      databaseUtility.CreateDatabase(null);
 
       using (var db = databaseUtility.ConnectionProvider.Database)
       {

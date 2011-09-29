@@ -16,7 +16,7 @@ namespace MicrOrm.Test.Utility
       get { return Provider; }
     }
 
-    public void CreateDatabase()
+    public void CreateDatabase(string initializationSql)
     {
       File.Create((string) Provider.ConnectionString["Data Source"]).Close();
     }

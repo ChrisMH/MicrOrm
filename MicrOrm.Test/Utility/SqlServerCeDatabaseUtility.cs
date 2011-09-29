@@ -14,7 +14,7 @@ namespace MicrOrm.Test.Utility
 
     public IMoConnectionProvider ConnectionProvider { get { return Provider; } }
     
-    public void CreateDatabase()
+    public void CreateDatabase(string initializationSql)
     {
       using( var engine = new SqlCeEngine( Provider.ConnectionString.ConnectionString) )
       {

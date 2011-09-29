@@ -6,13 +6,9 @@ namespace MicrOrm
 {
   public interface IMoDatabase : IDisposable
   {
-    //TClass SingleOrDefault<TClass>(string sql, params object[] parameters) where TClass : new();
-    //TClass Single<TClass>(string sql, params object[] parameters) where TClass : new();
-
-    //TClass FirstOrDefault<TClass>(string sql, params object[] parameters) where TClass : new();
-    //TClass First<TClass>(string sql, params object[] parameters) where TClass : new();
-
-    //IEnumerable<TClass> Query<TClass>(string sql, params object[] parameters) where TClass : new();
+    IEnumerable<dynamic> ExecuteReader(string sql, params object[] parameters);
+    dynamic ExecuteScalar(string sql, params object[] parameters);
+    void ExecuteNonQuery(string sql, params object[] parameters);
 
     IMoConnectionProvider ConnectionProvider { get; }
     DbConnection Connection { get; }

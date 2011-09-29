@@ -63,7 +63,8 @@
   <ItemGroup>
     <Compile Include="Core\MoConnectionProvider.cs" />
     <Compile Include="Core\MoDatabase.cs" />
-    <Compile Include="Core\ObjectMapper.cs" />
+    <Compile Include="Core\FieldMapping.cs" />
+    <Compile Include="Core\QueryBuilder.cs" />
     <Compile Include="IMoConnectionProvider.cs" />
     <Compile Include="IMoDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
