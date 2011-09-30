@@ -48,6 +48,10 @@ namespace MicrOrm.Core
     public DbConnection CreateConnection()
     {
       var connection = ProviderFactory.CreateConnection();
+      if(connection == null)
+      {
+        throw new MoException("Failed to create connection with provider factory");
+      }
       connection.ConnectionString = ConnectionString.ConnectionString;
       return connection;
     }
@@ -65,5 +69,12 @@ namespace MicrOrm.Core
       }
     }
 
+    public IMoTransaction Transaction
+    {
+      get
+      {
+        return new MoTransaction(this);
+      }
+    }
   }
 }

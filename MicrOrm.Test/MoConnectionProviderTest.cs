@@ -12,11 +12,9 @@ namespace MicrOrm.Test
   [TestFixture]
   public class MoConnectionProviderTest
   {
-    [TestCase("SqlServerCe.Connection")]
-    [TestCase("System.Data.SQLite.Connection")]
-    [TestCase("Devart.Data.SQLite.Connection")]
-    [TestCase("Npgsql.Connection")]
-    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -31,11 +29,9 @@ namespace MicrOrm.Test
                    provider.ConnectionString);
     }
 
-    [TestCase("SqlServerCe.Connection")]
-    [TestCase("System.Data.SQLite.Connection")]
-    [TestCase("Devart.Data.SQLite.Connection")]
-    [TestCase("Npgsql.Connection")]
-    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionStringAndProviderName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -51,11 +47,9 @@ namespace MicrOrm.Test
                    provider.ConnectionString);
     }
 
-    [TestCase("SqlServerCe.Connection")]
-    [TestCase("System.Data.SQLite.Connection")]
-    [TestCase("Devart.Data.SQLite.Connection")]
-    [TestCase("Npgsql.Connection")]
-    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionStringBuilderAndProviderName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -73,11 +67,9 @@ namespace MicrOrm.Test
                    provider.ConnectionString);
     }
 
-    [TestCase("SqlServerCe.Connection")]
-    [TestCase("System.Data.SQLite.Connection")]
-    [TestCase("Devart.Data.SQLite.Connection")]
-    [TestCase("Npgsql.Connection")]
-    [TestCase("Devart.Data.PostgreSQL.Connection")]
+    [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateConnection(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -98,11 +90,9 @@ namespace MicrOrm.Test
       }
     }
 
-    //[TestCase(typeof(SqlServerCeDatabaseUtility))]
-    //[TestCase(typeof(SystemDataSqLiteDatabaseUtility))]
-    //[TestCase(typeof(DevartDataSqLiteDatabaseUtility))]
-    [TestCase(typeof(NpgsqlPostgreSqlDatabaseUtility))]
-    //[TestCase(typeof(DevartDataPostgreSqlDatabaseUtility))]
+    [TestCase(typeof(PostgreSqlDatabaseUtility))]
+    [TestCase(typeof(SqLiteDatabaseUtility))]
+    [TestCase(typeof(SqlServerCeDatabaseUtility))]
     public void CanCreateDatabase(Type databaseUtilityType)
     {       
       Console.WriteLine(databaseUtilityType.FullName);

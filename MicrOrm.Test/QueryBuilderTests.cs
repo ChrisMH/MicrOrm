@@ -60,7 +60,7 @@ namespace MicrOrm.Test
     public void BuildThrowsIfParameterCountMismatch(string sql, object[] parameters)
     {
       var conn = MockIDbConnection.Create();
-      Console.WriteLine(Assert.Throws<ArgumentException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
+      Console.WriteLine(Assert.Throws<MoException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
     }
 
 
@@ -70,7 +70,7 @@ namespace MicrOrm.Test
     public void BuildThrowsIfParameterOrdinalMismatch(string sql, object[] parameters)
     {
       var conn = MockIDbConnection.Create();
-      Console.WriteLine(Assert.Throws<ArgumentException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
+      Console.WriteLine(Assert.Throws<MoException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
     }
 
     [TestCase("", 0)]
@@ -98,7 +98,7 @@ namespace MicrOrm.Test
     [TestCase(" :pa ")]
     public void FindUniqueParametersThrowsIfParameterFormatIsInvalid(string sql)
     {
-      Console.WriteLine(Assert.Throws<ArgumentException>(() => QueryBuilder.FindUniqueParameters(sql)).Message);
+      Console.WriteLine(Assert.Throws<MoException>(() => QueryBuilder.FindUniqueParameters(sql)).Message);
     }
   }
 }

@@ -3,13 +3,15 @@ using MicrOrm.Core;
 
 namespace MicrOrm.Test.Utility
 {
-  public abstract class PostgreSqlDatabaseUtility : IDatabaseUtility
+  public class PostgreSqlDatabaseUtility : IDatabaseUtility
   {
-    public PostgreSqlDatabaseUtility(string connectionStringName)
-    {
-      Provider = new MoConnectionProvider(connectionStringName);
+    public const string ConnectionStringName = "Npgsql.Connection";
 
-      CreateProvider = new MoConnectionProvider(connectionStringName);
+    public PostgreSqlDatabaseUtility()
+    {
+      Provider = new MoConnectionProvider(ConnectionStringName);
+
+      CreateProvider = new MoConnectionProvider(ConnectionStringName);
       CreateProvider.ConnectionString["database"] = "postgres";
     }
 
@@ -36,7 +38,11 @@ namespace MicrOrm.Test.Utility
         using (var conn = Provider.CreateConnection())
         {
           conn.Open();
-          Initialize(conn, initializationSql);
+          using (var cmd = conn.CreateCommand())
+          {
+            cmd.CommandText = initializationSql;
+            cmd.ExecuteNonQuery();
+          }
         }
       }
     }
@@ -53,12 +59,7 @@ namespace MicrOrm.Test.Utility
         }
       }
     }
-
-    protected virtual void Initialize(IDbConnection conn, string initializationSql)
-    {
-    }
-
-
+    
     protected IMoConnectionProvider Provider { get; private set; }
     protected IMoConnectionProvider CreateProvider { get; private set; }
   }

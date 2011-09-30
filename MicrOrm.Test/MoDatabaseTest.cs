@@ -15,33 +15,36 @@ namespace MicrOrm.Test
     {
     }
 
+    [TestCase(typeof(PostgreSqlDatabaseUtility))]
+    [TestCase(typeof(SqLiteDatabaseUtility))]
     [TestCase(typeof(SqlServerCeDatabaseUtility))]
-    [TestCase(typeof(SystemDataSqLiteDatabaseUtility))]
-    [TestCase(typeof(DevartDataSqLiteDatabaseUtility))]
-    [TestCase(typeof(NpgsqlPostgreSqlDatabaseUtility))]
-    [TestCase(typeof(DevartDataPostgreSqlDatabaseUtility))]
-    public void database_instance_opens_and_closes_database(Type databaseUtilityType)
+    public void DatabaseInstanceOpensAndClosesTheDatabase(Type databaseUtilityType)
     {
       Console.WriteLine(databaseUtilityType.FullName);
 
       var databaseUtility = ( IDatabaseUtility )databaseUtilityType.Assembly.CreateInstance(databaseUtilityType.FullName, false, BindingFlags.CreateInstance, null, null, null, null);
       databaseUtility.CreateDatabase(null);
 
-      DbConnection connection = null;
-      using( var db = new MoDatabase( databaseUtility.ConnectionProvider))
+      try
       {
-        Assert.NotNull(db);
-        Assert.NotNull(db.ConnectionProvider);
-        Assert.NotNull(db.Connection);
-        Assert.AreEqual(ConnectionState.Open, db.Connection.State);
-        connection = db.Connection;
+
+        DbConnection connection = null;
+        using (var db = new MoDatabase(databaseUtility.ConnectionProvider))
+        {
+          Assert.NotNull(db);
+          Assert.NotNull(db.ConnectionProvider);
+          Assert.NotNull(db.Connection);
+          Assert.AreEqual(ConnectionState.Open, db.Connection.State);
+          connection = db.Connection;
+        }
+
+        Assert.AreEqual(ConnectionState.Closed, connection.State);
       }
-
-      Assert.AreEqual(ConnectionState.Closed, connection.State);
-
-      databaseUtility.DestroyDatabase();
+      finally
+      {
+        databaseUtility.DestroyDatabase();
+      }
     }
 
-    //public IDatabaseUtility DatabaseUtility { get; set; }
   }
 }

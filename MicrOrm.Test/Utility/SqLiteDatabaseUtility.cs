@@ -5,9 +5,11 @@ namespace MicrOrm.Test.Utility
 {
   public class SqLiteDatabaseUtility : IDatabaseUtility
   {
-    public SqLiteDatabaseUtility(string connectionStringName)
+    public const string ConnectionStringName = "System.Data.SQLite.Connection";
+
+    public SqLiteDatabaseUtility()
     {
-      Provider = new MoConnectionProvider(connectionStringName);
+      Provider = new MoConnectionProvider(ConnectionStringName);
       Provider.ConnectionString["Data Source"] = Path.Combine(Path.GetTempPath(), (string) Provider.ConnectionString["Data Source"]);
     }
 

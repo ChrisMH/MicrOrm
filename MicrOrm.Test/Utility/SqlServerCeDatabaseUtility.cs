@@ -6,9 +6,11 @@ namespace MicrOrm.Test.Utility
 {
   public class SqlServerCeDatabaseUtility : IDatabaseUtility
   {
+    public const string ConnectionStringName = "SqlServerCe.Connection";
+
     static SqlServerCeDatabaseUtility()
     {
-      Provider = new MoConnectionProvider("SqlServerCe.Connection");
+      Provider = new MoConnectionProvider(ConnectionStringName);
       Provider.ConnectionString["Data Source"] = Path.Combine(Path.GetTempPath(), ( string )Provider.ConnectionString["Data Source"]);
     }
 

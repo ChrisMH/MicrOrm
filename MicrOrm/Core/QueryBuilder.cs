@@ -20,14 +20,14 @@ namespace MicrOrm.Core
       var parameterNames = FindUniqueParameters(sql);
       if(parameterNames.Count != parameters.Length)
       {
-        throw new ArgumentException(String.Format("Parameter count mismatch.  {0} in the SQL string, {1} supplied", parameterNames.Count, parameters.Length));
+        throw new MoException(String.Format("Parameter count mismatch.  {0} in the SQL string, {1} supplied", parameterNames.Count, parameters.Length));
       }
 
       for(var i = 0 ; i < parameters.Length ; i++)
       {
         if(!parameterNames.ContainsKey(i))
         {
-          throw new ArgumentException(String.Format("Parameter ordinal mismatch.  Parameter with ordinal {0} is missing in the SQL stirng", i));
+          throw new MoException(String.Format("Parameter ordinal mismatch.  Parameter with ordinal {0} is missing in the SQL stirng", i));
         }
         var dbParameter = cmd.CreateParameter();
         dbParameter.ParameterName = parameterNames[i];
@@ -63,7 +63,7 @@ namespace MicrOrm.Core
         var parameterIndex = -1;
         if (!Int32.TryParse(parameterName.Substring(1), out parameterIndex))
         {
-          throw new ArgumentException(String.Format("Parameter in SQL string has an improper format: '{0}'", parameterName));
+          throw new MoException(String.Format("Parameter in SQL string has an improper format: '{0}'", parameterName));
         }
 
         if (!result.ContainsKey(parameterIndex))

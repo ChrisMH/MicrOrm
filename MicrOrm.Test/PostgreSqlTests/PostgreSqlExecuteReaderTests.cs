@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using MicrOrm.Core;
 using MicrOrm.Test.Utility;
 using NUnit.Framework;
 
-namespace MicrOrm.Test
+namespace MicrOrm.Test.PostgreSqlTests
 {
   [TestFixture]
-  public class NpgsqlDatabaseQueryTest
+  public class PostgreSqlExecuteReaderTests
   {
     [SetUp]
     public void SetUp()
@@ -24,7 +23,7 @@ namespace MicrOrm.Test
     [Test]
     public void CanExecuteReaderForSimpleSelect()
     {
-      using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
+      using (var db = databaseUtility.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.user").ToList();
 
@@ -42,7 +41,7 @@ namespace MicrOrm.Test
     [Test]
     public void CanExecuteReaderForParameterizedSelect()
     {
-      using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
+      using (var db = databaseUtility.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.user WHERE name=:p0", "Bob").ToList();
 
@@ -61,7 +60,7 @@ namespace MicrOrm.Test
     [Test]
     public void CanExecuteReaderForFunction()
     {
-      using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
+      using (var db = databaseUtility.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.get_users()").ToList();
 
@@ -79,7 +78,7 @@ namespace MicrOrm.Test
     [Test]
     public void CanExecuteReaderForParameterizedFunction()
     {
-      using(var db = new MoDatabase(databaseUtility.ConnectionProvider))
+      using (var db = databaseUtility.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", new int[] {1, 3}).ToList();
 
@@ -93,6 +92,7 @@ namespace MicrOrm.Test
         }
       }
     }
-    private IDatabaseUtility databaseUtility = new NpgsqlPostgreSqlDatabaseUtility();
+
+    private readonly IDatabaseUtility databaseUtility = new PostgreSqlDatabaseUtility();
   }
 }

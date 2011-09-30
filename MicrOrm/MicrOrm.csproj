@@ -61,9 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMoTransaction.cs" />
     <Compile Include="Core\MoConnectionProvider.cs" />
     <Compile Include="Core\MoDatabase.cs" />
     <Compile Include="Core\FieldMapping.cs" />
+    <Compile Include="Core\MoException.cs" />
+    <Compile Include="Core\MoTransaction.cs" />
     <Compile Include="Core\QueryBuilder.cs" />
     <Compile Include="IMoConnectionProvider.cs" />
     <Compile Include="IMoDatabase.cs" />

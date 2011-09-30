@@ -13,7 +13,7 @@ namespace MicrOrm.Core
       Connection.Open();
     }
 
-    public void Dispose()
+    public virtual void Dispose()
     {
       GC.SuppressFinalize(this);
       Connection.Close();
@@ -35,12 +35,26 @@ namespace MicrOrm.Core
 
     public dynamic ExecuteScalar(string sql, params object[] parameters)
     {
-      throw new NotImplementedException();
+      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
+      {
+        using (var rdr = cmd.ExecuteReader())
+        {
+          if(!rdr.Read())
+          {
+            return null;
+          }
+
+          return Convert.IsDBNull(0) ? null : Convert.ChangeType(rdr[0], rdr.GetFieldType(0));
+        }
+      }
     }
 
     public void ExecuteNonQuery(string sql, params object[] parameters)
     {
-      throw new NotImplementedException();
+      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
+      {
+        cmd.ExecuteNonQuery();
+      }
     }
 
     public IMoConnectionProvider ConnectionProvider { get; private set; }

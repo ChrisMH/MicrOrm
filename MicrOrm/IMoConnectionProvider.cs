@@ -1,4 +1,5 @@
 ﻿using System.Data.Common;
+using MicrOrm.Core;
 
 namespace MicrOrm
 {
@@ -11,5 +12,6 @@ namespace MicrOrm
     DbProviderFactory ProviderFactory { get; }
 
     IMoDatabase Database { get; }
+    IMoTransaction Transaction { get; }
   }
 }
