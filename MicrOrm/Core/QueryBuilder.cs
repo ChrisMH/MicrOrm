@@ -34,6 +34,7 @@ namespace MicrOrm.Core
         dbParameter.Value = parameters[i];
         cmd.Parameters.Add(dbParameter);
       }
+      
       return cmd;
     }
 

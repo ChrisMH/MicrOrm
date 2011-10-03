@@ -4,7 +4,7 @@ using MicrOrm.Core;
 
 namespace MicrOrm.Test.Utility
 {
-  public class SqlServerCeDatabaseUtility : IDatabaseUtility
+  public class SqlServerCeDatabaseUtility : DatabaseUtility
   {
     public const string ConnectionStringName = "SqlServerCe.Connection";
 
@@ -14,9 +14,9 @@ namespace MicrOrm.Test.Utility
       Provider.ConnectionString["Data Source"] = Path.Combine(Path.GetTempPath(), ( string )Provider.ConnectionString["Data Source"]);
     }
 
-    public IMoConnectionProvider ConnectionProvider { get { return Provider; } }
-    
-    public void CreateDatabase(string initializationSql)
+    public override IMoConnectionProvider ConnectionProvider { get { return Provider; } }
+
+    public override void CreateDatabase(string initializationSql)
     {
       using( var engine = new SqlCeEngine( Provider.ConnectionString.ConnectionString) )
       {
@@ -24,7 +24,7 @@ namespace MicrOrm.Test.Utility
       }
     }
 
-    public void DestroyDatabase()
+    public override void DestroyDatabase()
     {
       if( File.Exists( (string)Provider.ConnectionString["Data Source"] ) )
       {

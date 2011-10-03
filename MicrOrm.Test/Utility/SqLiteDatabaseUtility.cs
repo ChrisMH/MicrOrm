@@ -3,7 +3,7 @@ using MicrOrm.Core;
 
 namespace MicrOrm.Test.Utility
 {
-  public class SqLiteDatabaseUtility : IDatabaseUtility
+  public class SqLiteDatabaseUtility : DatabaseUtility
   {
     public const string ConnectionStringName = "System.Data.SQLite.Connection";
 
@@ -13,17 +13,17 @@ namespace MicrOrm.Test.Utility
       Provider.ConnectionString["Data Source"] = Path.Combine(Path.GetTempPath(), (string) Provider.ConnectionString["Data Source"]);
     }
 
-    public IMoConnectionProvider ConnectionProvider
+    public override IMoConnectionProvider ConnectionProvider
     {
       get { return Provider; }
     }
 
-    public void CreateDatabase(string initializationSql)
+    public override void CreateDatabase(string initializationSql)
     {
       File.Create((string) Provider.ConnectionString["Data Source"]).Close();
     }
 
-    public void DestroyDatabase()
+    public override void DestroyDatabase()
     {
       if (File.Exists((string) Provider.ConnectionString["Data Source"]))
       {

@@ -3,7 +3,7 @@ using MicrOrm.Core;
 
 namespace MicrOrm.Test.Utility
 {
-  public class PostgreSqlDatabaseUtility : IDatabaseUtility
+  public class PostgreSqlDatabaseUtility : DatabaseUtility
   {
     public const string ConnectionStringName = "Npgsql.Connection";
 
@@ -15,12 +15,12 @@ namespace MicrOrm.Test.Utility
       CreateProvider.ConnectionString["database"] = "postgres";
     }
 
-    public IMoConnectionProvider ConnectionProvider
+    public override IMoConnectionProvider ConnectionProvider
     {
       get { return Provider; }
     }
 
-    public virtual void CreateDatabase(string initializationSql)
+    public override void CreateDatabase(string initializationSql)
     {
       DestroyDatabase();
       using (var conn = CreateProvider.CreateConnection())
@@ -47,7 +47,7 @@ namespace MicrOrm.Test.Utility
       }
     }
 
-    public void DestroyDatabase()
+    public override void DestroyDatabase()
     {
       using (var conn = CreateProvider.CreateConnection())
       {
