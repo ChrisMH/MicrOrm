@@ -8,6 +8,7 @@ namespace MicrOrm.Test.Utility
     static DatabaseUtility()
     {
       MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm");
+      MoLogger.Enabled = true;
     }
 
     public abstract IMoConnectionProvider ConnectionProvider { get; }

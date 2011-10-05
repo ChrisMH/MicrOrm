@@ -25,8 +25,7 @@ namespace MicrOrm.Test.PostgreSqlTests
       using(var trans = databaseUtility.ConnectionProvider.Transaction)
       {
         trans.ExecuteNonQuery("INSERT INTO test.user (name, email) VALUES(:p0, :p1)", "Billy", "billy@gmail.com");
-        trans.ExecuteNonQuery("INSERT INTO test.user (name, email) VALUES(:p0, :p1)", "Bobby", "bobby@gmail.com");
-
+        trans.ExecuteReader("INSERT INTO test.user (name, email) VALUES(:p0, :p1) RETURNING id", "Bobby", "bobby@gmail.com").Single();
         trans.Commit();
       }
 

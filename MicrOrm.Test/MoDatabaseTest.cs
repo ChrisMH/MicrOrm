@@ -16,8 +16,8 @@ namespace MicrOrm.Test
     }
 
     [TestCase(typeof(PostgreSqlDatabaseUtility))]
-    [TestCase(typeof(SqLiteDatabaseUtility))]
-    [TestCase(typeof(SqlServerCeDatabaseUtility))]
+    //[TestCase(typeof(SqLiteDatabaseUtility))]
+    //[TestCase(typeof(SqlServerCeDatabaseUtility))]
     public void DatabaseInstanceOpensAndClosesTheDatabase(Type databaseUtilityType)
     {
       Console.WriteLine(databaseUtilityType.FullName);
@@ -28,7 +28,7 @@ namespace MicrOrm.Test
       try
       {
 
-        DbConnection connection = null;
+        IDbConnection connection = null;
         using (var db = new MoDatabase(databaseUtility.ConnectionProvider))
         {
           Assert.NotNull(db);

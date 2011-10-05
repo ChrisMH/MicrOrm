@@ -2,7 +2,7 @@
 
 namespace MicrOrm.Core
 {
-  public class MoTransaction : MoDatabase, IMoTransaction
+  public class MoTransaction : MoDataStrategy, IMoTransaction
   {
     public MoTransaction(IMoConnectionProvider connectionProvider)
     : base(connectionProvider)

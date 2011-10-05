@@ -13,8 +13,12 @@ namespace MicrOrm.Core
       if (conn == null) throw new ArgumentNullException("conn");
       if (String.IsNullOrEmpty(sql)) throw new ArgumentNullException("sql");
 
-      var cmd = conn.CreateCommand();
+      if (parameters == null)
+      {
+        parameters = new object[0];
+      }
 
+      var cmd = conn.CreateCommand();
       cmd.CommandText = sql;
 
       var parameterNames = FindUniqueParameters(sql);

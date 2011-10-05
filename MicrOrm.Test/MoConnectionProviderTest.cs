@@ -13,8 +13,8 @@ namespace MicrOrm.Test
   public class MoConnectionProviderTest
   {
     [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -30,8 +30,8 @@ namespace MicrOrm.Test
     }
 
     [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionStringAndProviderName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -48,8 +48,8 @@ namespace MicrOrm.Test
     }
 
     [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateWithConnectionStringBuilderAndProviderName(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -68,8 +68,8 @@ namespace MicrOrm.Test
     }
 
     [TestCase(PostgreSqlDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
-    [TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqLiteDatabaseUtility.ConnectionStringName)]
+    //[TestCase(SqlServerCeDatabaseUtility.ConnectionStringName)]
     public void CanCreateConnection(string connectionStringName)
     {
       Console.WriteLine(connectionStringName);
@@ -91,8 +91,8 @@ namespace MicrOrm.Test
     }
 
     [TestCase(typeof(PostgreSqlDatabaseUtility))]
-    [TestCase(typeof(SqLiteDatabaseUtility))]
-    [TestCase(typeof(SqlServerCeDatabaseUtility))]
+    //[TestCase(typeof(SqLiteDatabaseUtility))]
+    //[TestCase(typeof(SqlServerCeDatabaseUtility))]
     public void CanCreateDatabase(Type databaseUtilityType)
     {       
       Console.WriteLine(databaseUtilityType.FullName);

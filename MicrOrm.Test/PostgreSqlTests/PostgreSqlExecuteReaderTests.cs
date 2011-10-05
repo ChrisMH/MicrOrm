@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MicrOrm.Core;
 using MicrOrm.Test.Utility;
 using NUnit.Framework;
 
@@ -93,6 +94,16 @@ namespace MicrOrm.Test.PostgreSqlTests
       }
     }
 
+    [Test]
+    public void ExecuteReaderWithNullParameterThrows()
+    {
+      using (var db = databaseUtility.ConnectionProvider.Database)
+      {
+        Assert.Throws<MoException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
+
+      }
+      
+    }
     private readonly IDatabaseUtility databaseUtility = new PostgreSqlDatabaseUtility();
   }
 }

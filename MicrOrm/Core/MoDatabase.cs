@@ -4,63 +4,12 @@ using System.Data.Common;
 
 namespace MicrOrm.Core
 {
-  public class MoDatabase : IMoDatabase
+  public class MoDatabase : MoDataStrategy, IMoDatabase
   {
     public MoDatabase(IMoConnectionProvider connectionProvider)
+    : base(connectionProvider)
     {
-      ConnectionProvider = connectionProvider;
-      Connection = connectionProvider.CreateConnection();
-      Connection.Open();
+      
     }
-
-    public virtual void Dispose()
-    {
-      GC.SuppressFinalize(this);
-      Connection.Close();
-    }
-
-    public IEnumerable<dynamic> ExecuteReader(string sql, params object[] parameters)
-    {
-      using(var cmd = QueryBuilder.Build(Connection, sql, parameters))
-      {
-        MoLogger.LogCommand(cmd);
-        using(var rdr = cmd.ExecuteReader())
-        {
-          while(rdr.Read())
-          {
-            yield return FieldMapping.MapRowToDynamic(rdr);
-          }
-        }
-      }
-    }
-
-    public dynamic ExecuteScalar(string sql, params object[] parameters)
-    {
-      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
-      {
-        MoLogger.LogCommand(cmd);
-        using (var rdr = cmd.ExecuteReader())
-        {
-          if(!rdr.Read())
-          {
-            return null;
-          }
-
-          return Convert.IsDBNull(0) ? null : Convert.ChangeType(rdr[0], rdr.GetFieldType(0));
-        }
-      }
-    }
-
-    public void ExecuteNonQuery(string sql, params object[] parameters)
-    {
-      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
-      {
-        MoLogger.LogCommand(cmd);
-        cmd.ExecuteNonQuery();
-      }
-    }
-
-    public IMoConnectionProvider ConnectionProvider { get; private set; }
-    public DbConnection Connection { get; private set; }
   }
 }

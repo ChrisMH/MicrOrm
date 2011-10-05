@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Data;
 
 namespace MicrOrm
 {
@@ -11,6 +11,6 @@ namespace MicrOrm
     void ExecuteNonQuery(string sql, params object[] parameters);
 
     IMoConnectionProvider ConnectionProvider { get; }
-    DbConnection Connection { get; }
+    IDbConnection Connection { get; }
   }
 }

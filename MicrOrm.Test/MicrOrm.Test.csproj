@@ -106,7 +106,6 @@
   <ItemGroup>
     <Compile Include="FieldMappingTests.cs" />
     <Compile Include="MoConnectionProviderTest.cs" />
-    <Compile Include="MoDatabaseQueryTest.cs" />
     <Compile Include="MoDatabaseTest.cs" />
     <Compile Include="PostgreSqlTests\PostgreSqlExecuteNonQueryTests.cs" />
     <Compile Include="PostgreSqlTests\PostgreSqlExecuteReaderTests.cs" />
