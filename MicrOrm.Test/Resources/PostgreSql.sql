@@ -38,3 +38,17 @@ BEGIN
 END;
 $$
 LANGUAGE plpgsql;
+
+CREATE FUNCTION test.get_user_id(user_name varchar)
+RETURNS integer
+AS
+$$
+DECLARE
+  d_id integer;
+BEGIN
+  SELECT INTO d_id u.id FROM test.user u WHERE u.name = user_name LIMIT 1;
+  return d_id;
+END;
+$$
+LANGUAGE plpgsql;
+

@@ -46,7 +46,19 @@ namespace MicrOrm.Core
             return null;
           }
 
-          return Convert.IsDBNull(0) ? null : Convert.ChangeType(rdr[0], rdr.GetFieldType(0));
+          if(Convert.IsDBNull(0))
+          {
+            return null;
+          }
+
+          try
+          {
+            return Convert.ChangeType(rdr[0], rdr.GetFieldType(0));
+          }
+          catch (InvalidCastException)
+          {
+            return null;
+          }
         }
       }
     }

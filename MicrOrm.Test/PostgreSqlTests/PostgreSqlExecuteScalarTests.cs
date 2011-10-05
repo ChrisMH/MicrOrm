@@ -53,6 +53,27 @@ namespace MicrOrm.Test.PostgreSqlTests
       }
     }
 
+    [Test]
+    public void CanGetValueFromFunction()
+    {
+      using (var db = databaseUtility.ConnectionProvider.Database)
+      {
+        var result = db.ExecuteScalar("SELECT * FROM test.get_user_id(:p0)", "Bob");
+
+        Assert.True(result > 0);
+      }
+    }
+
+    [Test]
+    public void CanGetNullValueFromFunction()
+    {
+      using (var db = databaseUtility.ConnectionProvider.Database)
+      {
+        var result = db.ExecuteScalar("SELECT * FROM test.get_user_id(:p0)", "InvalidName");
+
+        Assert.Null(result);
+      }
+    }
     private readonly IDatabaseUtility databaseUtility = new PostgreSqlDatabaseUtility();
   }
 }
