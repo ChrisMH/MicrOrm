@@ -3,3 +3,5 @@ bin
 *.csproj.user
 *.suo
 *.ReSharper.user
+
+*.dotCover
