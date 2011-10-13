@@ -58,7 +58,7 @@ namespace MicrOrm.Test.PostgreSqlTests
     {
       using (var db = databaseUtility.ConnectionProvider.Database)
       {
-        var result = db.ExecuteScalar("SELECT * FROM test.get_user_id(:p0)", "Bob");
+        var result = db.ExecuteScalar("SELECT test.get_user_id(:p0)", "Bob");
 
         Assert.True(result > 0);
       }
@@ -69,7 +69,7 @@ namespace MicrOrm.Test.PostgreSqlTests
     {
       using (var db = databaseUtility.ConnectionProvider.Database)
       {
-        var result = db.ExecuteScalar("SELECT * FROM test.get_user_id(:p0)", "InvalidName");
+        var result = db.ExecuteScalar("SELECT test.get_user_id(:p0)", "InvalidName");
 
         Assert.Null(result);
       }
