@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.1.0.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.NLog, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.NLog.1.0.1\lib\net40\Common.Logging.NLog.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\packages\Npgsql.2.0.11\lib\Net40\Mono.Security.dll</HintPath>
     </Reference>
@@ -66,6 +60,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Utility.Logging">
+      <HintPath>..\packages\Utility.Logging.1.1\lib\net40\Utility.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Utility.Logging.NLog">
+      <HintPath>..\packages\Utility.Logging.NLog.1.1\lib\net40\Utility.Logging.NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalTest.cs" />

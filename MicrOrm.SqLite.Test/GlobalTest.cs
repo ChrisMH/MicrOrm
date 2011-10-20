@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Logging.NLog;
 using MicrOrm.Core;
 using MicrOrm.SqLite.Test.Utility;
 using NUnit.Framework;
+using Utility.Logging.NLog;
 
 /// <summary>
 /// Sets up and tears down for the test assembly.
@@ -13,20 +13,10 @@ public static class GlobalTest
 {
   static GlobalTest()
   {
-    try
-    {
-      DbUtility = new DbUtility();
+    DbUtility = new DbUtility();
 
-      MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
-      MoLogger.Enabled = true;
-
-    }
-    catch (Exception e)
-    {
-      
-      throw;
-    }
-
+    MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
+    MoLogger.Enabled = true;
   }
 
   [SetUp]

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MicrOrm.Core;
 
 namespace MicrOrm.SqlServerCe.Test.Utility
 {

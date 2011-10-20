@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Data.Common;
-using MicrOrm.Core;
 using MicrOrm.Test.Mock;
-using MicrOrm.Test.Utility;
-using Moq;
-using NUnit.Framework;
 
 namespace MicrOrm.Test
 {
   public class ObjectMapperTest
   {
-
-
     private readonly MockRow[] mockTable1 =
       new[]
         {
@@ -32,9 +25,7 @@ namespace MicrOrm.Test
                          }
             }
         };
-
-
-        }
+  }
 
   public class TestObject
   {

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Common.Logging.NLog;
 using MicrOrm.Core;
 
 namespace MicrOrm.SqLite.Test.Utility
@@ -11,9 +10,6 @@ namespace MicrOrm.SqLite.Test.Utility
     public DbUtility()
     {
       Provider = new MoConnectionProvider(ConnectionStringName);
-
-      MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
-      MoLogger.Enabled = true;
     }
 
     public IMoConnectionProvider ConnectionProvider
@@ -24,7 +20,7 @@ namespace MicrOrm.SqLite.Test.Utility
     public void Create()
     {
       Destroy();
-      File.Create((string)Provider.ConnectionString["data source"]).Close();
+      File.Create((string) Provider.ConnectionString["data source"]).Close();
 
       using (var conn = Provider.CreateConnection())
       {
@@ -39,9 +35,9 @@ namespace MicrOrm.SqLite.Test.Utility
 
     public void Destroy()
     {
-      if (File.Exists((string)Provider.ConnectionString["data source"]))
+      if (File.Exists((string) Provider.ConnectionString["data source"]))
       {
-        File.Delete((string)Provider.ConnectionString["data source"]);
+        File.Delete((string) Provider.ConnectionString["data source"]);
       }
     }
 
@@ -60,6 +56,7 @@ namespace MicrOrm.SqLite.Test.Utility
         }
       }
     }
+
     protected IMoConnectionProvider Provider { get; private set; }
     protected IMoConnectionProvider CreateProvider { get; private set; }
   }

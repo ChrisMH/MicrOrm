@@ -1,5 +1,5 @@
-﻿using Common.Logging.NLog;
-using MicrOrm.Core;
+﻿using MicrOrm.Core;
+using Utility.Logging.NLog;
 
 namespace MicrOrm.PostgreSql.Test.Utility
 {
@@ -13,9 +13,6 @@ namespace MicrOrm.PostgreSql.Test.Utility
 
       CreateProvider = new MoConnectionProvider(ConnectionStringName);
       CreateProvider.ConnectionString["database"] = "postgres";
-
-      MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.PostgreSql.Test");
-      MoLogger.Enabled = true;
     }
 
     public IMoConnectionProvider ConnectionProvider
@@ -75,6 +72,7 @@ namespace MicrOrm.PostgreSql.Test.Utility
         }
       }
     }
+
     protected IMoConnectionProvider Provider { get; private set; }
     protected IMoConnectionProvider CreateProvider { get; private set; }
   }

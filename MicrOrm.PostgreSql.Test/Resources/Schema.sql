@@ -20,7 +20,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
-CREATE FUNCTION test.get_users(user_names string[])
+CREATE FUNCTION test.get_users(user_names varchar[])
 RETURNS TABLE(id integer, name varchar, email varchar)
 AS
 $$

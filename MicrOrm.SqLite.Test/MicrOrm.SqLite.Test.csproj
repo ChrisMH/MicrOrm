@@ -33,12 +33,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.1.0.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.NLog">
-      <HintPath>..\packages\Common.Logging.NLog.1.0.1\lib\net40\Common.Logging.NLog.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
@@ -68,6 +62,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Utility.Logging">
+      <HintPath>..\packages\Utility.Logging.1.1\lib\net40\Utility.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Utility.Logging.NLog">
+      <HintPath>..\packages\Utility.Logging.NLog.1.1\lib\net40\Utility.Logging.NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionProviderTest.cs" />

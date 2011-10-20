@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Data;
-using Common.Logging;
-using System.Linq;
+using Utility.Logging;
 
 namespace MicrOrm.Core
 {
@@ -13,19 +11,19 @@ namespace MicrOrm.Core
 
     public static void LogCommand(IDbCommand cmd)
     {
-      if(!Enabled || Logger == null ) return;
+      if (!Enabled || Logger == null) return;
 
       Logger.Debug(cmd.CommandText);
 
       foreach (IDataParameter parameter in cmd.Parameters)
       {
         var value = parameter.Value == null ? "NULL" : parameter.Value.ToString();
-        if(parameter.Value != null && parameter.Value.GetType().IsArray)
+        if (parameter.Value != null && parameter.Value.GetType().IsArray)
         {
           var arrayValues = (Array) Convert.ChangeType(parameter.Value, parameter.Value.GetType());
           var enumerator = arrayValues.GetEnumerator();
           value = "{";
-          while(enumerator.MoveNext())
+          while (enumerator.MoveNext())
           {
             value += enumerator.Current.ToString() + ",";
           }

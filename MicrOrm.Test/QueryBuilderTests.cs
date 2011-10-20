@@ -2,9 +2,7 @@
 using System.Data;
 using MicrOrm.Core;
 using MicrOrm.Test.Mock;
-using MicrOrm.Test.Utility;
 using NUnit.Framework;
-using System.Linq;
 
 namespace MicrOrm.Test
 {
@@ -23,7 +21,7 @@ namespace MicrOrm.Test
       Assert.AreEqual(2, paramColl[1]);
     }
 
-    [Test] 
+    [Test]
     public void SimpleSelect()
     {
       var conn = MockIDbConnection.Create();
@@ -36,7 +34,7 @@ namespace MicrOrm.Test
       Assert.AreEqual(0, cmd.Parameters.Count);
     }
 
-    [Test] 
+    [Test]
     public void ParameterizedSelect()
     {
       var conn = MockIDbConnection.Create();
@@ -48,11 +46,11 @@ namespace MicrOrm.Test
       Assert.AreEqual(sql, cmd.CommandText);
       Assert.AreEqual(2, cmd.Parameters.Count);
 
-      Assert.AreEqual("p0", ((IDbDataParameter)cmd.Parameters[0]).ParameterName);
-      Assert.AreEqual(1, ((IDbDataParameter)cmd.Parameters[0]).Value);
+      Assert.AreEqual("p0", ((IDbDataParameter) cmd.Parameters[0]).ParameterName);
+      Assert.AreEqual(1, ((IDbDataParameter) cmd.Parameters[0]).Value);
 
-      Assert.AreEqual("p1", ((IDbDataParameter)cmd.Parameters[1]).ParameterName);
-      Assert.AreEqual("two", ((IDbDataParameter)cmd.Parameters[1]).Value);
+      Assert.AreEqual("p1", ((IDbDataParameter) cmd.Parameters[1]).ParameterName);
+      Assert.AreEqual("two", ((IDbDataParameter) cmd.Parameters[1]).Value);
     }
 
     [TestCase(":p0", new object[] {1, "two"})]

@@ -73,7 +73,7 @@ namespace MicrOrm.PostgreSql.Test
     {
       using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
       {
-        var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", new string[] {"Bob", "Jane"}).ToList();
+        var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", (object)new string[] {"Fred", "Ed"}).ToList();
 
         Assert.NotNull(result);
         Assert.AreEqual(2, result.Count);
