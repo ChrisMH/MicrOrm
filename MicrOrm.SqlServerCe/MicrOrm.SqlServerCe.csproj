@@ -39,10 +39,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Utility.Logging">
-      <HintPath>..\packages\Utility.Logging.1.1\lib\net40\Utility.Logging.dll</HintPath>
+      <HintPath>..\packages\Utility.Logging.1.2\lib\net40\Utility.Logging.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -63,13 +63,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Utility.Logging">
-      <HintPath>..\packages\Utility.Logging.1.1\lib\net40\Utility.Logging.dll</HintPath>
+      <HintPath>..\packages\Utility.Logging.1.2\lib\net40\Utility.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Utility.Logging.NLog">
-      <HintPath>..\packages\Utility.Logging.NLog.1.1\lib\net40\Utility.Logging.NLog.dll</HintPath>
+      <HintPath>..\packages\Utility.Logging.NLog.1.2\lib\net40\Utility.Logging.NLog.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ConnectionProviderTest.cs" />
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="ExecuteNonQueryTest.cs" />

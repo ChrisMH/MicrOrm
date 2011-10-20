@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrOrm.SqlServerCe", "Micr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrOrm.SqlServerCe.Test", "MicrOrm.SqlServerCe.Test\MicrOrm.SqlServerCe.Test.csproj", "{59D04396-884E-4526-9005-142A6964879D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedAssemblyInfo", "SharedAssemblyInfo", "{29DABD58-933C-4443-86C9-A30F5C41FC06}"
+	ProjectSection(SolutionItems) = preProject
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
