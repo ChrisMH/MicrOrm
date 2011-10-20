@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data;
 using MicrOrm.Core;
+using MicrOrm.Test.Mock;
 using MicrOrm.Test.Utility;
 using NUnit.Framework;
 using System.Linq;
 
 namespace MicrOrm.Test
 {
-  [TestFixture]
   public class QueryBuilderTests
   {
     [Test]
