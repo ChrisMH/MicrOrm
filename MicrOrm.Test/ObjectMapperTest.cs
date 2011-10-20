@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data.Common;
 using MicrOrm.Core;
+using MicrOrm.Test.Mock;
 using MicrOrm.Test.Utility;
 using Moq;
 using NUnit.Framework;
 
 namespace MicrOrm.Test
 {
-  [TestFixture]
   public class ObjectMapperTest
   {
 

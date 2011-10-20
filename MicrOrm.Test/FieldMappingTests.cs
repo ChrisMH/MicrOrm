@@ -1,11 +1,10 @@
 ﻿using System;
 using MicrOrm.Core;
-using MicrOrm.Test.Utility;
+using MicrOrm.Test.Mock;
 using NUnit.Framework;
 
 namespace MicrOrm.Test
 {
-  [TestFixture]
   public class FieldMappingTests
   {
     [Test]

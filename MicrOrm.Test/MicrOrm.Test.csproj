@@ -52,12 +52,6 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.1.0.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.NLog">
-      <HintPath>..\packages\Common.Logging.NLog.1.0.1\lib\net40\Common.Logging.NLog.dll</HintPath>
-    </Reference>
     <Reference Include="Devart.Data, Version=5.0.284.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\dotConnect\Devart.Data.dll</HintPath>
@@ -68,17 +62,8 @@
     <Reference Include="Devart.Data.SQLite">
       <HintPath>..\ThirdParty\dotConnect\SQLite\Devart.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\ThirdParty\Npgsql\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\ThirdParty\Npgsql\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
@@ -105,59 +90,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FieldMappingTests.cs" />
-    <Compile Include="MoConnectionProviderTest.cs" />
-    <Compile Include="MoDatabaseTest.cs" />
-    <Compile Include="PostgreSqlTests\PostgreSqlExecuteNonQueryTests.cs" />
-    <Compile Include="PostgreSqlTests\PostgreSqlExecuteReaderTests.cs" />
-    <Compile Include="PostgreSqlTests\PostgreSqlExecuteScalarTests.cs" />
-    <Compile Include="PostgreSqlTests\PostgreSqlTransactionTests.cs" />
     <Compile Include="ObjectMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBuilderTests.cs" />
-    <Compile Include="Properties\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Utility\DatabaseUtility.cs" />
-    <Compile Include="Utility\MockIDbCommand.cs" />
-    <Compile Include="Utility\MockIDbConnection.cs" />
-    <Compile Include="Utility\MoqIDataReader.cs" />
-    <Compile Include="Utility\MockIDbDataParameter.cs" />
-    <Compile Include="Utility\MockIDataParameterCollection.cs" />
-    <Compile Include="Utility\SqLiteDatabaseUtility.cs" />
-    <Compile Include="Utility\PostgreSqlDatabaseUtility.cs" />
-    <Compile Include="Utility\IDatabaseUtility.cs" />
-    <Compile Include="Utility\SqlServerCeDatabaseUtility.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MicrORM\MicrORM.csproj">
-      <Project>{F8B877FE-DA09-45D6-883A-75D613DCDD6D}</Project>
-      <Name>MicrORM</Name>
-    </ProjectReference>
+    <Compile Include="Mock\MockIDbCommand.cs" />
+    <Compile Include="Mock\MockIDbConnection.cs" />
+    <Compile Include="Mock\MoqIDataReader.cs" />
+    <Compile Include="Mock\MockIDbDataParameter.cs" />
+    <Compile Include="Mock\MockIDataParameterCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="nlog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sqlite3.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\PostgreSql.sql" />
+    <ProjectReference Include="..\MicrOrm\MicrOrm.csproj">
+      <Project>{F8B877FE-DA09-45D6-883A-75D613DCDD6D}</Project>
+      <Name>MicrOrm</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
