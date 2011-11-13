@@ -10,9 +10,10 @@ namespace MicrOrm.PostgreSql.Test
   /// Sets up and tears down for the test assembly.
   /// </summary>
   [SetUpFixture]
-  public static class GlobalTest
+  public class GlobalTest
   {
-    static GlobalTest()
+    [SetUp]
+    public void SetUp()
     {
       try
       {
@@ -20,24 +21,6 @@ namespace MicrOrm.PostgreSql.Test
         MoLogger.Enabled = true;
 
         DbUtility = new DbUtility();
-
-      }
-      catch (Exception e)
-      {
-        if(MoLogger.Logger != null)
-        {
-          MoLogger.Logger.Fatal(e, "GlobalTest : {0} : {1}", e.GetType(), e.Message);
-        }
-        throw;
-      }
-
-    }
-
-    [SetUp]
-    public static void SetUp()
-    {
-      try
-      {
         DbUtility.Create();
       }
       catch (Exception e)
@@ -49,7 +32,7 @@ namespace MicrOrm.PostgreSql.Test
     }
 
     [TearDown]
-    public static void TearDown()
+    public void TearDown()
     {
       DbUtility.Destroy();
     }
