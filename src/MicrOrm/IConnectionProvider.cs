@@ -3,7 +3,7 @@ using MicrOrm.Core;
 
 namespace MicrOrm
 {
-  public interface IMoConnectionProvider
+  public interface IConnectionProvider
   {
     DbConnection CreateConnection();
 
@@ -11,7 +11,7 @@ namespace MicrOrm
     string ProviderName { get; }
     DbProviderFactory ProviderFactory { get; }
 
-    IMoDatabase Database { get; }
-    IMoTransaction Transaction { get; }
+    IDatabase Database { get; }
+    ITransaction Transaction { get; }
   }
 }

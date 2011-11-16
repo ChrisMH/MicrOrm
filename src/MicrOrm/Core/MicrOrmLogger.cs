@@ -4,7 +4,7 @@ using Utility.Logging;
 
 namespace MicrOrm.Core
 {
-  public static class MoLogger
+  public static class MicrOrmLogger
   {
     public static ILogger Logger { get; set; }
     public static bool Enabled { get; set; }

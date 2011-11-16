@@ -2,9 +2,9 @@
 
 namespace MicrOrm.Core
 {
-  public class MoTransaction : MoDataStrategy, IMoTransaction
+  public class MicrOrmTransaction : MicrOrmDataStrategy, ITransaction
   {
-    public MoTransaction(IMoConnectionProvider connectionProvider)
+    public MicrOrmTransaction(IConnectionProvider connectionProvider)
     : base(connectionProvider)
     {
       Transaction = Connection.BeginTransaction();

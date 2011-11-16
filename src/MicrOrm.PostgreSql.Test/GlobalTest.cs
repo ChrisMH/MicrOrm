@@ -17,15 +17,15 @@ namespace MicrOrm.PostgreSql.Test
     {
       try
       {
-        MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.PostgreSql.Test");
-        MoLogger.Enabled = true;
+        MicrOrmLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.PostgreSql.Test");
+        MicrOrmLogger.Enabled = true;
 
         DbUtility = new DbUtility();
         DbUtility.Create();
       }
       catch (Exception e)
       {
-        MoLogger.Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
+        MicrOrmLogger.Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
         
         throw;
       }

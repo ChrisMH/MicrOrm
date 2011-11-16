@@ -9,10 +9,10 @@ namespace MicrOrm.SqLite.Test.Utility
 
     public DbUtility()
     {
-      Provider = new MoConnectionProvider(ConnectionStringName);
+      Provider = new MicrOrmConnectionProvider(ConnectionStringName);
     }
 
-    public IMoConnectionProvider ConnectionProvider
+    public IConnectionProvider ConnectionProvider
     {
       get { return Provider; }
     }
@@ -57,7 +57,7 @@ namespace MicrOrm.SqLite.Test.Utility
       }
     }
 
-    protected IMoConnectionProvider Provider { get; private set; }
-    protected IMoConnectionProvider CreateProvider { get; private set; }
+    protected IConnectionProvider Provider { get; private set; }
+    protected IConnectionProvider CreateProvider { get; private set; }
   }
 }

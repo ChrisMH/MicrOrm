@@ -9,13 +9,13 @@ namespace MicrOrm.PostgreSql.Test.Utility
 
     public DbUtility()
     {
-      Provider = new MoConnectionProvider(ConnectionStringName);
+      Provider = new MicrOrmConnectionProvider(ConnectionStringName);
 
-      CreateProvider = new MoConnectionProvider(ConnectionStringName);
+      CreateProvider = new MicrOrmConnectionProvider(ConnectionStringName);
       CreateProvider.ConnectionString["database"] = "postgres";
     }
 
-    public IMoConnectionProvider ConnectionProvider
+    public IConnectionProvider ConnectionProvider
     {
       get { return Provider; }
     }
@@ -73,7 +73,7 @@ namespace MicrOrm.PostgreSql.Test.Utility
       }
     }
 
-    protected IMoConnectionProvider Provider { get; private set; }
-    protected IMoConnectionProvider CreateProvider { get; private set; }
+    protected IConnectionProvider Provider { get; private set; }
+    protected IConnectionProvider CreateProvider { get; private set; }
   }
 }

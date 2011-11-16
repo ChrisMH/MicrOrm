@@ -9,11 +9,11 @@ namespace MicrOrm.SqlServerCe.Test.Utility
 
     static DbUtility()
     {
-      Provider = new MoConnectionProvider(ConnectionStringName);
+      Provider = new MicrOrmConnectionProvider(ConnectionStringName);
       Provider.ConnectionString["Data Source"] = Path.Combine(Path.GetTempPath(), ( string )Provider.ConnectionString["Data Source"]);
     }
 
-    public override IMoConnectionProvider ConnectionProvider { get { return Provider; } }
+    public override IConnectionProvider ConnectionProvider { get { return Provider; } }
 
     public override void CreateDatabase(string initializationSql)
     {
@@ -31,6 +31,6 @@ namespace MicrOrm.SqlServerCe.Test.Utility
       }
     }
 
-    private static readonly IMoConnectionProvider Provider;
+    private static readonly IConnectionProvider Provider;
   }
 }

@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using MicrOrm.Core;
@@ -12,7 +13,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanCreateWithConnectionName()
     {
-      var provider = (IMoConnectionProvider) new MoConnectionProvider(DbUtility.ConnectionStringName);
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(DbUtility.ConnectionStringName);
 
       Assert.NotNull(provider);
 
@@ -25,7 +26,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanCreateWithConnectionStringAndProviderName()
     {
-      var provider = (IMoConnectionProvider) new MoConnectionProvider(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString,
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString,
                                                                       ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName);
 
       Assert.NotNull(provider);
@@ -40,8 +41,8 @@ namespace MicrOrm.PostgreSql.Test
     public void CanCreateWithConnectionStringBuilderAndProviderName()
     {
       var provider =
-        (IMoConnectionProvider)
-        new MoConnectionProvider(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
+        (IConnectionProvider)
+        new MicrOrmConnectionProvider(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
                                  ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName);
 
       Assert.NotNull(provider);
@@ -55,7 +56,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanCreateConnection()
     {
-      var provider = new MoConnectionProvider(DbUtility.ConnectionStringName);
+      var provider = new MicrOrmConnectionProvider(DbUtility.ConnectionStringName);
 
       var connection = provider.CreateConnection();
 
@@ -69,6 +70,13 @@ namespace MicrOrm.PostgreSql.Test
         Assert.True(connectionStringActual.ContainsKey(key));
         Assert.AreEqual(provider.ConnectionString[key], connectionStringActual[key]);
       }
+    }
+
+    [Test]
+    public void InvalidConnectionStringNameThrows()
+    {
+      var e = Assert.Throws<ArgumentException>(() => new MicrOrmConnectionProvider("InvalidConnectionStringName"));
+      Assert.AreEqual("connectionStringName", e.ParamName);
     }
   }
 }

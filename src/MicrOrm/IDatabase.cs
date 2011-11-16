@@ -4,13 +4,13 @@ using System.Data;
 
 namespace MicrOrm
 {
-  public interface IMoDatabase : IDisposable
+  public interface IDatabase : IDisposable
   {
     IEnumerable<dynamic> ExecuteReader(string sql, params object[] parameters);
     dynamic ExecuteScalar(string sql, params object[] parameters);
     void ExecuteNonQuery(string sql, params object[] parameters);
 
-    IMoConnectionProvider ConnectionProvider { get; }
+    IConnectionProvider ConnectionProvider { get; }
     IDbConnection Connection { get; }
   }
 }

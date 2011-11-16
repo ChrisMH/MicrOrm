@@ -15,8 +15,8 @@ public static class GlobalTest
   {
     DbUtility = new DbUtility();
 
-    MoLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
-    MoLogger.Enabled = true;
+    MicrOrmLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
+    MicrOrmLogger.Enabled = true;
   }
 
   [SetUp]

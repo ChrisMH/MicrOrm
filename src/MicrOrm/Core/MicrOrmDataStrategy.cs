@@ -4,9 +4,9 @@ using System.Data;
 
 namespace MicrOrm.Core
 {
-  public abstract class MoDataStrategy
+  public abstract class MicrOrmDataStrategy
   {
-    protected MoDataStrategy(IMoConnectionProvider connectionProvider)
+    protected MicrOrmDataStrategy(IConnectionProvider connectionProvider)
     {
       ConnectionProvider = connectionProvider;
       Connection = connectionProvider.CreateConnection();
@@ -23,7 +23,7 @@ namespace MicrOrm.Core
     {
       using(var cmd = QueryBuilder.Build(Connection, sql, parameters))
       {
-        MoLogger.LogCommand(cmd);
+        MicrOrmLogger.LogCommand(cmd);
         using(var rdr = cmd.ExecuteReader())
         {
           while(rdr.Read())
@@ -38,7 +38,7 @@ namespace MicrOrm.Core
     {
       using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
       {
-        MoLogger.LogCommand(cmd);
+        MicrOrmLogger.LogCommand(cmd);
         using (var rdr = cmd.ExecuteReader())
         {
           if(!rdr.Read())
@@ -67,12 +67,12 @@ namespace MicrOrm.Core
     {
       using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
       {
-        MoLogger.LogCommand(cmd);
+        MicrOrmLogger.LogCommand(cmd);
         cmd.ExecuteNonQuery();
       }
     }
 
-    public IMoConnectionProvider ConnectionProvider { get; private set; }
+    public IConnectionProvider ConnectionProvider { get; private set; }
     public IDbConnection Connection { get; private set; } 
   }
 }

@@ -55,7 +55,7 @@ namespace MicrOrm.SqLite.Test
     {
       using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
       {
-        Assert.Throws<MoException>(() => db.ExecuteReader("SELECT * FROM user WHERE email=:p0", null).ToList());
+        Assert.Throws<MicrOrmException>(() => db.ExecuteReader("SELECT * FROM user WHERE email=:p0", null).ToList());
       }
     }
   }

@@ -68,17 +68,17 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\MoDataStrategy.cs" />
-    <Compile Include="Core\MoLogger.cs" />
-    <Compile Include="IMoTransaction.cs" />
-    <Compile Include="Core\MoConnectionProvider.cs" />
-    <Compile Include="Core\MoDatabase.cs" />
+    <Compile Include="Core\MicrOrmDataStrategy.cs" />
+    <Compile Include="Core\MicrOrmLogger.cs" />
+    <Compile Include="ITransaction.cs" />
+    <Compile Include="Core\MicrOrmConnectionProvider.cs" />
+    <Compile Include="Core\MicrOrmDatabase.cs" />
     <Compile Include="Core\FieldMapping.cs" />
-    <Compile Include="Core\MoException.cs" />
-    <Compile Include="Core\MoTransaction.cs" />
+    <Compile Include="Core\MicrOrmException.cs" />
+    <Compile Include="Core\MicrOrmTransaction.cs" />
     <Compile Include="Core\QueryBuilder.cs" />
-    <Compile Include="IMoConnectionProvider.cs" />
-    <Compile Include="IMoDatabase.cs" />
+    <Compile Include="IConnectionProvider.cs" />
+    <Compile Include="IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

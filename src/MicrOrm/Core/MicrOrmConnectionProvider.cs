@@ -4,14 +4,16 @@ using System.Data.Common;
 
 namespace MicrOrm.Core
 {
-  public class MoConnectionProvider : IMoConnectionProvider
+  public class MicrOrmConnectionProvider : IConnectionProvider
   {
     /// <summary>
     /// Create using a named connection string setting from the application configuration file
     /// </summary>
     /// <param name="connectionStringName">The name of the connection string in the application configuration file</param>
-    public MoConnectionProvider(string connectionStringName)
+    public MicrOrmConnectionProvider(string connectionStringName)
     {
+      if(ConfigurationManager.ConnectionStrings[connectionStringName] == null) throw new ArgumentException(string.Format("Connection string name '{0}' not found in configuration", connectionStringName), "connectionStringName");
+
       ConnectionString = new DbConnectionStringBuilder { ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString };
       ProviderName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
       ProviderFactory = DbProviderFactories.GetFactory(ProviderName);
@@ -22,7 +24,7 @@ namespace MicrOrm.Core
     /// </summary>
     /// <param name="connectionString">The connection string</param>
     /// <param name="providerName">The database provider name</param>
-    public MoConnectionProvider(DbConnectionStringBuilder connectionString, string providerName)
+    public MicrOrmConnectionProvider(DbConnectionStringBuilder connectionString, string providerName)
     {
       ConnectionString = connectionString;
       ProviderName = providerName;
@@ -34,7 +36,7 @@ namespace MicrOrm.Core
     /// </summary>
     /// <param name="connectionString">The connection string</param>
     /// <param name="providerName">The database provider name</param>
-    public MoConnectionProvider(string connectionString, string providerName)
+    public MicrOrmConnectionProvider(string connectionString, string providerName)
     {
       ConnectionString = new DbConnectionStringBuilder { ConnectionString = connectionString };
       ProviderName = providerName;
@@ -50,7 +52,7 @@ namespace MicrOrm.Core
       var connection = ProviderFactory.CreateConnection();
       if(connection == null)
       {
-        throw new MoException("Failed to create connection with provider factory");
+        throw new MicrOrmException("Failed to create connection with provider factory");
       }
       connection.ConnectionString = ConnectionString.ConnectionString;
       return connection;
@@ -61,19 +63,19 @@ namespace MicrOrm.Core
     public DbProviderFactory ProviderFactory { get; private set; }
 
     
-    public IMoDatabase Database
+    public IDatabase Database
     {
       get
       {
-        return new MoDatabase(this);
+        return new MicrOrmDatabase(this);
       }
     }
 
-    public IMoTransaction Transaction
+    public ITransaction Transaction
     {
       get
       {
-        return new MoTransaction(this);
+        return new MicrOrmTransaction(this);
       }
     }
   }

@@ -91,7 +91,7 @@ namespace MicrOrm.PostgreSql.Test
     {
       using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
       {
-        Assert.Throws<MoException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
+        Assert.Throws<MicrOrmException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
       }
     }
   }

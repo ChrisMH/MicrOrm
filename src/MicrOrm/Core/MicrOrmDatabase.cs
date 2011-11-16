@@ -4,9 +4,9 @@ using System.Data.Common;
 
 namespace MicrOrm.Core
 {
-  public class MoDatabase : MoDataStrategy, IMoDatabase
+  public class MicrOrmDatabase : MicrOrmDataStrategy, IDatabase
   {
-    public MoDatabase(IMoConnectionProvider connectionProvider)
+    public MicrOrmDatabase(IConnectionProvider connectionProvider)
     : base(connectionProvider)
     {
       
