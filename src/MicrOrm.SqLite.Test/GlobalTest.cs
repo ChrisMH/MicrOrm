@@ -1,6 +1,5 @@
 ﻿using System;
 using MicrOrm.Core;
-using MicrOrm.SqLite.Test.Utility;
 using NUnit.Framework;
 using Utility.Logging.NLog;
 
@@ -13,8 +12,6 @@ public static class GlobalTest
 {
   static GlobalTest()
   {
-    DbUtility = new DbUtility();
-
     MicrOrmLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.SqLite.Test");
     MicrOrmLogger.Enabled = true;
   }
@@ -22,14 +19,11 @@ public static class GlobalTest
   [SetUp]
   public static void SetUp()
   {
-    DbUtility.Create();
   }
 
   [TearDown]
   public static void TearDown()
   {
-    DbUtility.Destroy();
   }
 
-  public static DbUtility DbUtility { get; private set; }
 }

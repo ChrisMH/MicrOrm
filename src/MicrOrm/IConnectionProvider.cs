@@ -1,16 +1,13 @@
-﻿using System.Data.Common;
-using MicrOrm.Core;
+﻿using System.Data;
+using Utility.Database;
 
 namespace MicrOrm
 {
   public interface IConnectionProvider
   {
-    DbConnection CreateConnection();
-
-    DbConnectionStringBuilder ConnectionString { get; }
-    string ProviderName { get; }
-    DbProviderFactory ProviderFactory { get; }
-
+    IDbConnectionInfo ConnectionInfo { get; }
+    
+    IDbConnection CreateConnection();
     IDatabase Database { get; }
     ITransaction Transaction { get; }
   }

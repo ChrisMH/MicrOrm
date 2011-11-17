@@ -7,13 +7,13 @@ namespace MicrOrm.PostgreSql.Test
     [SetUp]
     public void SetUp()
     {
-      GlobalTest.DbUtility.Seed();
+      GlobalTest.TestDb.Seed();
     }
 
     [Test]
     public void CanInsertRecord()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         db.ExecuteNonQuery("INSERT INTO test.user (name, email) VALUES (:p0,:p1)", "Billy", "billy@gmail.com");
 

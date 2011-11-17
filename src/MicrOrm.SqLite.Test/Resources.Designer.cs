@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MicrOrm.SqlServerCe.Test.Properties {
+namespace MicrOrm.SqLite.Test {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MicrOrm.SqlServerCe.Test.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MicrOrm.SqlServerCe.Test.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MicrOrm.SqLite.Test.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,49 +57,6 @@ namespace MicrOrm.SqlServerCe.Test.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM user;
-        ///.
-        /// </summary>
-        internal static string DeleteData {
-            get {
-                return ResourceManager.GetString("DeleteData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO user (name, email) VALUES (&apos;Bob&apos;, &apos;bob@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Fred&apos;, &apos;fred@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Jane&apos;, &apos;jane@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Ed&apos;, &apos;ed@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Jim&apos;, &apos;jim@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Gary&apos;, &apos;gary@gmail.com&apos;);
-        ///INSERT INTO user (name, email) VALUES (&apos;Bob&apos;, NULL);
-        ///.
-        /// </summary>
-        internal static string InsertData {
-            get {
-                return ResourceManager.GetString("InsertData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///CREATE TABLE user
-        ///(
-        ///  id INTEGER PRIMARY KEY,
-        ///  name TEXT NOT NULL,
-        ///  email TEXT
-        ///);
-        ///
-        ///.
-        /// </summary>
-        internal static string Schema {
-            get {
-                return ResourceManager.GetString("Schema", resourceCulture);
             }
         }
     }

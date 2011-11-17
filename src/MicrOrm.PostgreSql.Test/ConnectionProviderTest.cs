@@ -3,75 +3,51 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using MicrOrm.Core;
-using MicrOrm.PostgreSql.Test.Utility;
 using NUnit.Framework;
+using Utility.Database;
 
 namespace MicrOrm.PostgreSql.Test
 {
   public class ConnectionProviderTest
   {
+    private readonly IDbConnectionInfo connectionInfo = new DbConnectionInfo("Test");
+
+    [Test]
+    public void CanCreateWithConnectionInfo()
+    {
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo);
+
+      Assert.NotNull(provider);
+      Assert.NotNull(provider.ConnectionInfo);
+      Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
+      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
+    }
+
     [Test]
     public void CanCreateWithConnectionName()
     {
-      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(DbUtility.ConnectionStringName);
-
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.Name);
+      
       Assert.NotNull(provider);
-
-      Assert.NotNull(provider.ProviderFactory);
-      Assert.AreEqual(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName, provider.ProviderName);
-      Assert.AreEqual(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
-                      provider.ConnectionString);
+      Assert.NotNull(provider.ConnectionInfo);
+      Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
+      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
     [Test]
     public void CanCreateWithConnectionStringAndProviderName()
     {
-      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString,
-                                                                      ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName);
-
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionString, connectionInfo.ProviderName);
+      
       Assert.NotNull(provider);
-
-      Assert.NotNull(provider.ProviderFactory);
-      Assert.AreEqual(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName, provider.ProviderName);
-      Assert.AreEqual(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
-                      provider.ConnectionString);
+      Assert.NotNull(provider.ConnectionInfo);
+      Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
+      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
-
-    [Test]
-    public void CanCreateWithConnectionStringBuilderAndProviderName()
-    {
-      var provider =
-        (IConnectionProvider)
-        new MicrOrmConnectionProvider(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
-                                 ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName);
-
-      Assert.NotNull(provider);
-
-      Assert.NotNull(provider.ProviderFactory);
-      Assert.AreEqual(ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ProviderName, provider.ProviderName);
-      Assert.AreEqual(new DbConnectionStringBuilder {ConnectionString = ConfigurationManager.ConnectionStrings[DbUtility.ConnectionStringName].ConnectionString},
-                      provider.ConnectionString);
-    }
-
-    [Test]
-    public void CanCreateConnection()
-    {
-      var provider = new MicrOrmConnectionProvider(DbUtility.ConnectionStringName);
-
-      var connection = provider.CreateConnection();
-
-      Assert.NotNull(connection);
-      Assert.AreEqual(ConnectionState.Closed, connection.State);
-
-      var connectionStringActual = new DbConnectionStringBuilder {ConnectionString = connection.ConnectionString};
-
-      foreach (string key in provider.ConnectionString.Keys)
-      {
-        Assert.True(connectionStringActual.ContainsKey(key));
-        Assert.AreEqual(provider.ConnectionString[key], connectionStringActual[key]);
-      }
-    }
-
+    
     [Test]
     public void InvalidConnectionStringNameThrows()
     {

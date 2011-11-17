@@ -9,7 +9,7 @@ namespace MicrOrm.PostgreSql.Test
     public void DatabaseInstanceOpensAndClosesTheDatabase()
     {
       IDbConnection connection;
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         Assert.NotNull(db);
         Assert.NotNull(db.ConnectionProvider);

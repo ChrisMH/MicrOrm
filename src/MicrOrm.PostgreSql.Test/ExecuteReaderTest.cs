@@ -10,13 +10,13 @@ namespace MicrOrm.PostgreSql.Test
     [SetUp]
     public void SetUp()
     {
-      GlobalTest.DbUtility.Seed();
+      GlobalTest.TestDb.Seed();
     }
 
     [Test]
     public void CanExecuteReaderForSimpleSelect()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.user").ToList();
 
@@ -34,7 +34,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanExecuteReaderForParameterizedSelect()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.user WHERE name=:p0", "Bob").ToList();
 
@@ -53,7 +53,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanExecuteReaderForFunction()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.get_users()").ToList();
 
@@ -71,7 +71,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanExecuteReaderForParameterizedFunction()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", (object)new string[] {"Fred", "Ed"}).ToList();
 
@@ -89,7 +89,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void ExecuteReaderWithNullParameterThrows()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         Assert.Throws<MicrOrmException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
       }

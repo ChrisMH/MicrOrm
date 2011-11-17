@@ -7,13 +7,13 @@ namespace MicrOrm.PostgreSql.Test
     [SetUp]
     public void SetUp()
     {
-      GlobalTest.DbUtility.Seed();
+      GlobalTest.TestDb.Seed();
     }
 
     [Test]
     public void CanGetSimpleCount()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteScalar("SELECT COUNT(*) FROM test.user");
 
@@ -25,7 +25,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanGetParameterizedCount()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteScalar("SELECT COUNT(*) FROM test.user WHERE name=:p0", "Bob");
 
@@ -37,7 +37,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanGetNullValue()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteScalar("SELECT id FROM test.user WHERE name=:p0", "InvalidName");
 
@@ -48,7 +48,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanGetValueFromFunction()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteScalar("SELECT test.get_user_id(:p0)", "Bob");
 
@@ -59,7 +59,7 @@ namespace MicrOrm.PostgreSql.Test
     [Test]
     public void CanGetNullValueFromFunction()
     {
-      using (var db = GlobalTest.DbUtility.ConnectionProvider.Database)
+      using (var db = GlobalTest.ConnectionProvider.Database)
       {
         var result = db.ExecuteScalar("SELECT test.get_user_id(:p0)", "InvalidName");
 

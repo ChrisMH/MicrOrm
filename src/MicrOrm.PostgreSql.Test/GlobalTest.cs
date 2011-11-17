@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Xml.Linq;
 using MicrOrm.Core;
-using MicrOrm.PostgreSql.Test.Utility;
 using NUnit.Framework;
+using Utility.Database.Management;
+using Utility.Database.Management.PostgreSql;
+using Utility.Logging;
 using Utility.Logging.NLog;
 
 namespace MicrOrm.PostgreSql.Test
@@ -12,21 +15,29 @@ namespace MicrOrm.PostgreSql.Test
   [SetUpFixture]
   public class GlobalTest
   {
+    public static IDbManager TestDb { get; private set; }
+    public static IConnectionProvider ConnectionProvider { get; private set; }
+    public static ILogger Logger { get; private set; }
+
     [SetUp]
     public void SetUp()
     {
       try
       {
-        MicrOrmLogger.Logger = new NLogLoggerFactory().GetLogger("MicrOrm.PostgreSql.Test");
+        Logger = new NLogLoggerFactory().GetCurrentClassLogger();
+        MicrOrmLogger.Logger = Logger.GetLogger("MicrOrm.PostgreSql.Test");
+        
         MicrOrmLogger.Enabled = true;
 
-        DbUtility = new DbUtility();
-        DbUtility.Create();
+        TestDb = new PgDbManager(new PgDbDescription(XElement.Parse(Resources.Test)));
+        TestDb.Create();
+
+        ConnectionProvider = new MicrOrmConnectionProvider(TestDb.ConnectionInfo);
+
       }
       catch (Exception e)
       {
-        MicrOrmLogger.Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
-        
+        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
         throw;
       }
     }
@@ -34,9 +45,16 @@ namespace MicrOrm.PostgreSql.Test
     [TearDown]
     public void TearDown()
     {
-      DbUtility.Destroy();
+      try
+      {
+        MicrOrmLogger.Enabled = false;
+        TestDb.Destroy();
+      }
+      catch (Exception e)
+      {
+        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
+        throw;
+      }
     }
-
-    public static DbUtility DbUtility { get; private set; }
   }
 }
