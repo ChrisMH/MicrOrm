@@ -28,12 +28,12 @@ namespace MicrOrm.Core
     /// Create using a connection string and provider name
     /// </summary>
     /// <param name="connectionString">The connection string</param>
-    /// <param name="providerName">The database provider name</param>
-    public MicrOrmConnectionProvider(string connectionString, string providerName)
+    /// <param name="provider">The database provider name</param>
+    public MicrOrmConnectionProvider(string connectionString, string provider)
     {
       if (string.IsNullOrEmpty(connectionString)) throw new ArgumentException("Connection string not supplied", "connectionString");
-      if (string.IsNullOrEmpty(providerName)) throw new ArgumentException("Provider name not not supplied", "providerName");
-      ConnectionInfo = new DbConnectionInfo {ConnectionString = connectionString, ProviderName = providerName};
+      if (string.IsNullOrEmpty(provider)) throw new ArgumentException("Provider name not not supplied", "provider");
+      ConnectionInfo = new DbConnectionInfo {ConnectionString = connectionString, Provider = provider};
     }
 
     /// <summary>

@@ -20,7 +20,7 @@ namespace MicrOrm.PostgreSql.Test
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
       Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
@@ -32,19 +32,19 @@ namespace MicrOrm.PostgreSql.Test
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
       Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
     [Test]
     public void CanCreateWithConnectionStringAndProviderName()
     {
-      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionString, connectionInfo.ProviderName);
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionString, connectionInfo.Provider);
       
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(connectionInfo.ProviderName, provider.ConnectionInfo.ProviderName);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
       Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
     

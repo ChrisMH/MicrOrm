@@ -2,8 +2,8 @@
 using System.Xml.Linq;
 using MicrOrm.Core;
 using NUnit.Framework;
-using Utility.Database.Management;
-using Utility.Database.Management.PostgreSql;
+using Utility.Database;
+using Utility.Database.PostgreSql;
 using Utility.Logging;
 using Utility.Logging.NLog;
 
