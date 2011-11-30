@@ -29,7 +29,7 @@ namespace MicrOrm.PostgreSql.Test
         
         MicrOrmLogger.Enabled = true;
 
-        TestDb = new PgDbManager(new PgDbDescription(XElement.Parse(Resources.Test)));
+        TestDb = new PgDbManager {Description = new PgDbDescription {XmlRoot = Resources.Test}};
         TestDb.Create();
 
         ConnectionProvider = new MicrOrmConnectionProvider(TestDb.ConnectionInfo);

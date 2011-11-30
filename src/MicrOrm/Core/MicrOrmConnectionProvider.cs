@@ -21,7 +21,7 @@ namespace MicrOrm.Core
     /// <param name="connectionStringName">The name of the connection string in the application configuration file</param>
     public MicrOrmConnectionProvider(string connectionStringName)
     {
-      ConnectionInfo = new DbConnectionInfo(connectionStringName);
+      ConnectionInfo = new GenericDbConnectionInfo {ConnectionStringName = connectionStringName};
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace MicrOrm.Core
     {
       if (string.IsNullOrEmpty(connectionString)) throw new ArgumentException("Connection string not supplied", "connectionString");
       if (string.IsNullOrEmpty(provider)) throw new ArgumentException("Provider name not not supplied", "provider");
-      ConnectionInfo = new DbConnectionInfo {ConnectionString = connectionString, Provider = provider};
+      ConnectionInfo = new GenericDbConnectionInfo {ConnectionString = connectionString, Provider = provider};
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace MicrOrm.Core
     /// <returns>A (closed) connection to the database.</returns>
     public IDbConnection CreateConnection()
     {
-      var connection = ConnectionInfo.ProviderFactory.CreateConnection();
+      var connection = ((IDbProviderInfo)ConnectionInfo).ProviderFactory.CreateConnection();
       if (connection == null)
       {
         throw new MicrOrmException("Failed to create connection with provider factory");
