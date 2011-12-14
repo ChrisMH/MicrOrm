@@ -7,7 +7,7 @@ namespace MicrOrm.PostgreSql.Test
 {
   public class ConnectionProviderTest
   {
-    private readonly IDbConnectionInfo connectionInfo = new GenericDbConnectionInfo {ConnectionStringName = "Test"};
+    private readonly IDbConnectionInfo connectionInfo = new DbConnectionInfo {ConnectionStringName = "Test"};
 
     [Test]
     public void CanCreateWithConnectionInfo()
@@ -17,32 +17,32 @@ namespace MicrOrm.PostgreSql.Test
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(((IDbProviderInfo)connectionInfo).Provider, ((IDbProviderInfo)provider.ConnectionInfo).Provider);
-      Assert.NotNull(((IDbProviderInfo)provider.ConnectionInfo).ProviderFactory);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
     [Test]
     public void CanCreateWithConnectionName()
     {
-      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionStringName);
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider("Test");
 
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(((IDbProviderInfo)connectionInfo).Provider, ((IDbProviderInfo)provider.ConnectionInfo).Provider);
-      Assert.NotNull(((IDbProviderInfo)provider.ConnectionInfo).ProviderFactory);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
     [Test]
     public void CanCreateWithConnectionStringAndProviderName()
     {
-      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionString, ((IDbProviderInfo)connectionInfo).Provider);
+      var provider = (IConnectionProvider) new MicrOrmConnectionProvider(connectionInfo.ConnectionString, connectionInfo.Provider);
 
       Assert.NotNull(provider);
       Assert.NotNull(provider.ConnectionInfo);
       Assert.AreEqual(connectionInfo.ConnectionString, provider.ConnectionInfo.ConnectionString);
-      Assert.AreEqual(((IDbProviderInfo)connectionInfo).Provider, ((IDbProviderInfo)provider.ConnectionInfo).Provider);
-      Assert.NotNull(((IDbProviderInfo)provider.ConnectionInfo).ProviderFactory);
+      Assert.AreEqual(connectionInfo.Provider, provider.ConnectionInfo.Provider);
+      Assert.NotNull(provider.ConnectionInfo.ProviderFactory);
     }
 
     [Test]
