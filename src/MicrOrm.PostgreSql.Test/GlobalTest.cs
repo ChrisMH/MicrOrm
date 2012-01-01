@@ -24,7 +24,7 @@ namespace MicrOrm.PostgreSql.Test
     {
       try
       {
-        Logger = new NLogLoggerFactory().GetCurrentClassLogger();
+        Logger = new NLogLoggerFactory().GetCurrentInstanceLogger();
         MicrOrmLogger.Logger = Logger.GetLogger("MicrOrm.PostgreSql.Test");
         
         MicrOrmLogger.Enabled = true;
