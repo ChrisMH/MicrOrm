@@ -8,9 +8,9 @@ namespace MicrOrm.Core
   {
     private const string ParameterPrefix = ":p";
 
-    public static IDbCommand Build(IDbConnection conn, string sql, params object[] parameters)
+    public static void BuildCommand(IDbCommand cmd, string sql, params object[] parameters)
     {
-      if (conn == null) throw new ArgumentNullException("conn");
+      if (cmd == null) throw new ArgumentNullException("cmd");
       if (String.IsNullOrEmpty(sql)) throw new ArgumentNullException("sql");
 
       if (parameters == null)
@@ -18,9 +18,8 @@ namespace MicrOrm.Core
         parameters = new object[0];
       }
 
-      var cmd = conn.CreateCommand();
       cmd.CommandText = sql;
-
+      
       var parameterNames = FindUniqueParameters(sql);
       if(parameterNames.Count != parameters.Length)
       {
@@ -31,15 +30,13 @@ namespace MicrOrm.Core
       {
         if(!parameterNames.ContainsKey(i))
         {
-          throw new MicrOrmException(String.Format("Parameter ordinal mismatch.  Parameter with ordinal {0} is missing in the SQL stirng", i));
+          throw new MicrOrmException(String.Format("Parameter ordinal mismatch.  Parameter with ordinal {0} is missing in the SQL string", i));
         }
         var dbParameter = cmd.CreateParameter();
         dbParameter.ParameterName = parameterNames[i];
         dbParameter.Value = parameters[i];
         cmd.Parameters.Add(dbParameter);
       }
-      
-      return cmd;
     }
 
     internal static Dictionary<int, string> FindUniqueParameters(string sql)

@@ -27,7 +27,8 @@ namespace MicrOrm.Test
       var conn = MockIDbConnection.Create();
       var sql = "SELECT * FROM table";
 
-      var cmd = QueryBuilder.Build(conn, sql);
+      var cmd = conn.CreateCommand();
+      QueryBuilder.BuildCommand(cmd, sql);
 
       Assert.NotNull(cmd);
       Assert.AreEqual(sql, cmd.CommandText);
@@ -40,7 +41,8 @@ namespace MicrOrm.Test
       var conn = MockIDbConnection.Create();
       var sql = "SELECT * FROM table WHERE field1=:p0 AND field2=:p1";
 
-      var cmd = QueryBuilder.Build(conn, sql, 1, "two");
+      var cmd = conn.CreateCommand();
+      QueryBuilder.BuildCommand(cmd, sql, 1, "two");
 
       Assert.NotNull(cmd);
       Assert.AreEqual(sql, cmd.CommandText);
@@ -55,20 +57,22 @@ namespace MicrOrm.Test
 
     [TestCase(":p0", new object[] {1, "two"})]
     [TestCase(":p0 :p1", new object[] {1})]
-    public void BuildThrowsIfParameterCountMismatch(string sql, object[] parameters)
+    public void BuildCommandThrowsIfParameterCountMismatch(string sql, object[] parameters)
     {
       var conn = MockIDbConnection.Create();
-      Console.WriteLine(Assert.Throws<MicrOrmException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
+      var cmd = conn.CreateCommand();
+      Console.WriteLine(Assert.Throws<MicrOrmException>(() => QueryBuilder.BuildCommand(cmd, sql, parameters)).Message);
     }
 
 
     [TestCase(":p23 :p0", new object[] {1, "two"})]
     [TestCase(":p1", new object[] {1})]
     [TestCase(":p1 :p3 :p0", new object[] {1, 2, 3})]
-    public void BuildThrowsIfParameterOrdinalMismatch(string sql, object[] parameters)
+    public void BuildCommandThrowsIfParameterOrdinalMismatch(string sql, object[] parameters)
     {
       var conn = MockIDbConnection.Create();
-      Console.WriteLine(Assert.Throws<MicrOrmException>(() => QueryBuilder.Build(conn, sql, parameters)).Message);
+      var cmd = conn.CreateCommand();
+      Console.WriteLine(Assert.Throws<MicrOrmException>(() => QueryBuilder.BuildCommand(cmd, sql, parameters)).Message);
     }
 
     [TestCase("", 0)]

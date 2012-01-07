@@ -21,8 +21,9 @@ namespace MicrOrm.Core
 
     public IEnumerable<dynamic> ExecuteReader(string sql, params object[] parameters)
     {
-      using(var cmd = QueryBuilder.Build(Connection, sql, parameters))
+      using(var cmd = CreateCommand())
       {
+        QueryBuilder.BuildCommand(cmd, sql, parameters);
         MicrOrmLogger.LogCommand(cmd);
         using(var rdr = cmd.ExecuteReader())
         {
@@ -36,8 +37,9 @@ namespace MicrOrm.Core
 
     public dynamic ExecuteScalar(string sql, params object[] parameters)
     {
-      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
+      using (var cmd = CreateCommand())
       {
+        QueryBuilder.BuildCommand(cmd, sql, parameters);
         MicrOrmLogger.LogCommand(cmd);
         using (var rdr = cmd.ExecuteReader())
         {
@@ -65,12 +67,15 @@ namespace MicrOrm.Core
 
     public void ExecuteNonQuery(string sql, params object[] parameters)
     {
-      using (var cmd = QueryBuilder.Build(Connection, sql, parameters))
+      using (var cmd = CreateCommand())
       {
+        QueryBuilder.BuildCommand(cmd, sql, parameters);
         MicrOrmLogger.LogCommand(cmd);
         cmd.ExecuteNonQuery();
       }
     }
+
+    protected abstract IDbCommand CreateCommand();
 
     public IConnectionProvider ConnectionProvider { get; private set; }
     public IDbConnection Connection { get; private set; } 

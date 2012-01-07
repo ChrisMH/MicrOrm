@@ -19,6 +19,7 @@ namespace MicrOrm.Core
       base.Dispose();
     }
 
+
     public void Commit()
     {
       Transaction.Commit();
@@ -31,6 +32,14 @@ namespace MicrOrm.Core
       Transaction.Rollback();
       Transaction.Dispose();
       Transaction = null;
+    }
+
+
+    protected override IDbCommand CreateCommand()
+    {
+      var cmd = Connection.CreateCommand();
+      cmd.Transaction = Transaction;
+      return cmd;
     }
 
     public IDbTransaction Transaction { get; private set; }
