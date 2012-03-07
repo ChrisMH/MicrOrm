@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MicrOrm</id>
+    <version>$version$</version>
+    <title>MicrOrm</title>
+    <authors>Chris Hogan</authors>
+    <owners>Chris Hogan</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Database access without the ORM</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>Database ORM</tags>
+    <dependencies>
+      <dependency id="Utility" version="0.7.1" />
+      <dependency id="Utility.Database" version="0.19.2" />
+      <dependency id="Utility.Logging" version="1.4.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\MicrOrm\bin\Release\MicrOrm.dll" target ="lib\net40"/>
+    <file src="..\src\MicrOrm\bin\Release\MicrOrm.pdb" target ="lib\net40"/>
+  </files>
+</package>
