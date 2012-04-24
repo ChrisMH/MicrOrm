@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace MicrOrm.Core
 {
@@ -18,7 +19,7 @@ namespace MicrOrm.Core
         parameters = new object[0];
       }
 
-      cmd.CommandText = sql;
+      cmd.CommandText = new Regex(" *[\r\n]+ *").Replace(sql, " ");
       
       var parameterNames = FindUniqueParameters(sql);
       if(parameterNames.Count != parameters.Length)
