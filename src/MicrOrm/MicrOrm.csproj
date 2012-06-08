@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Core\MicrOrmDataStrategy.cs" />
     <Compile Include="Core\MicrOrmLogger.cs" />
+    <Compile Include="IDataStrategy.cs" />
     <Compile Include="ITransaction.cs" />
     <Compile Include="Core\MicrOrmConnectionProvider.cs" />
     <Compile Include="Core\MicrOrmDatabase.cs" />
