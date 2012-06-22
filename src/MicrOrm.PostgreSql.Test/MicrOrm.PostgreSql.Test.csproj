@@ -59,21 +59,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Utility.0.7.1.0\lib\net40\Utility.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Database, Version=0.19.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Database, Version=0.19.5.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Database.0.19.2.0\lib\net40\Utility.Database.dll</HintPath>
+      <HintPath>..\packages\Utility.Database.0.19.5.2\lib\net40\Utility.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Database.PostgreSql, Version=0.19.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Database.PostgreSql, Version=0.19.5.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Database.PostgreSql.0.19.2.0\lib\net40\Utility.Database.PostgreSql.dll</HintPath>
+      <HintPath>..\packages\Utility.Database.PostgreSql.0.19.5.2\lib\net40\Utility.Database.PostgreSql.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Logging, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Logging, Version=1.4.2.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Logging.1.4.2.0\lib\net40\Utility.Logging.dll</HintPath>
+      <HintPath>..\packages\Utility.Logging.1.4.2.3\lib\net40\Utility.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Logging.NLog, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Logging.NLog, Version=1.4.2.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Logging.NLog.1.4.2.0\lib\net40\Utility.Logging.NLog.dll</HintPath>
+      <HintPath>..\packages\Utility.Logging.NLog.1.4.2.3\lib\net40\Utility.Logging.NLog.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
