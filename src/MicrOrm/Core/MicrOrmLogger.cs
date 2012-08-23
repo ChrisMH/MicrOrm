@@ -1,19 +1,39 @@
 ﻿using System;
 using System.Data;
-using Utility.Logging;
 
 namespace MicrOrm.Core
 {
   public static class MicrOrmLogger
   {
-    public static ILogger Logger { get; set; }
-    public static bool Enabled { get; set; }
+    public static bool Enabled
+    {
+      get 
+      {
+        return logger != null;
+      }
+      set
+      {
+        if(value)
+        {
+          if(logger == null)
+          {
+            logger = NLog.LogManager.GetLogger("MicrOrm");
+          }
+        }
+        else
+        {
+          logger = null;
+        }
+      }
+    }
+
+    static NLog.Logger logger;
 
     public static void LogCommand(IDbCommand cmd)
     {
-      if (!Enabled || Logger == null) return;
+      if (logger == null) return;
 
-      Logger.Debug(cmd.CommandText);
+      logger.Debug(cmd.CommandText);
 
       foreach (IDataParameter parameter in cmd.Parameters)
       {
@@ -29,7 +49,7 @@ namespace MicrOrm.Core
           }
           value = value.TrimEnd(new[] {','}) + "}";
         }
-        Logger.Debug("      :{0} = {1}", parameter.ParameterName, value);
+        logger.Debug("      :{0} = {1}", parameter.ParameterName, value);
       }
     }
   }

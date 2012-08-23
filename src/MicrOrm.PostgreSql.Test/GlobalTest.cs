@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Xml.Linq;
 using MicrOrm.Core;
 using NUnit.Framework;
 using Utility.Database;
 using Utility.Database.PostgreSql;
-using Utility.Logging;
-using Utility.Logging.NLog;
 
 namespace MicrOrm.PostgreSql.Test
 {
@@ -17,15 +14,14 @@ namespace MicrOrm.PostgreSql.Test
   {
     public static IDbManager TestDb { get; private set; }
     public static IConnectionProvider ConnectionProvider { get; private set; }
-    public static ILogger Logger { get; private set; }
+    public static NLog.Logger Logger { get; private set; }
 
     [SetUp]
     public void SetUp()
     {
       try
       {
-        Logger = new NLogLoggerFactory().GetCurrentInstanceLogger();
-        MicrOrmLogger.Logger = Logger.GetLogger("MicrOrm.PostgreSql.Test");
+        Logger = NLog.LogManager.GetCurrentClassLogger();
         
         MicrOrmLogger.Enabled = true;
 
@@ -37,7 +33,7 @@ namespace MicrOrm.PostgreSql.Test
       }
       catch (Exception e)
       {
-        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
+        Logger.FatalException(string.Format("SetUp : {0} : {1}", e.GetType(), e.Message), e);
         throw;
       }
     }
@@ -52,7 +48,7 @@ namespace MicrOrm.PostgreSql.Test
       }
       catch (Exception e)
       {
-        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
+        Logger.FatalException(string.Format("SetUp : {0} : {1}", e.GetType(), e.Message), e);
         throw;
       }
     }

@@ -13,7 +13,6 @@
     <dependencies>
       <dependency id="Utility"/>
       <dependency id="Utility.Database"/>
-      <dependency id="Utility.Logging"/>
     </dependencies>
   </metadata>
   <files>

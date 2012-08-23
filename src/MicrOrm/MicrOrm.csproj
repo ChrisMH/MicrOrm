@@ -51,6 +51,9 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -63,13 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Utility.0.7.1.0\lib\net40\Utility.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Database, Version=0.19.5.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Database, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Database.0.19.5.2\lib\net40\Utility.Database.dll</HintPath>
-    </Reference>
-    <Reference Include="Utility.Logging, Version=1.4.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Logging.1.4.2.3\lib\net40\Utility.Logging.dll</HintPath>
+      <HintPath>..\packages\Utility.Database.0.20.0.0\lib\net40\Utility.Database.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

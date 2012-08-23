@@ -43,9 +43,9 @@
     <Reference Include="Npgsql">
       <HintPath>..\packages\Npgsql.2.0.11\lib\Net40\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -59,21 +59,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Utility.0.7.1.0\lib\net40\Utility.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Database, Version=0.19.5.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Database, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Database.0.19.5.2\lib\net40\Utility.Database.dll</HintPath>
+      <HintPath>..\packages\Utility.Database.0.20.0.0\lib\net40\Utility.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Utility.Database.PostgreSql, Version=0.19.5.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Utility.Database.PostgreSql, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Database.PostgreSql.0.19.5.2\lib\net40\Utility.Database.PostgreSql.dll</HintPath>
-    </Reference>
-    <Reference Include="Utility.Logging, Version=1.4.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Logging.1.4.2.3\lib\net40\Utility.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Utility.Logging.NLog, Version=1.4.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Utility.Logging.NLog.1.4.2.3\lib\net40\Utility.Logging.NLog.dll</HintPath>
+      <HintPath>..\packages\Utility.Database.PostgreSql.0.20.0.0\lib\net40\Utility.Database.PostgreSql.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
