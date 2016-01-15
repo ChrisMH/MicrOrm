@@ -16,7 +16,7 @@ namespace MicrOrm.PostgreSql.Test
     public static IConnectionProvider ConnectionProvider { get; private set; }
     public static NLog.Logger Logger { get; private set; }
 
-    [SetUp]
+    [OneTimeSetUp]
     public void SetUp()
     {
       try
@@ -38,7 +38,7 @@ namespace MicrOrm.PostgreSql.Test
       }
     }
 
-    [TearDown]
+    [OneTimeTearDown]
     public void TearDown()
     {
       try

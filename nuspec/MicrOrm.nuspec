@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\MicrOrm\bin\Release\MicrOrm.dll" target ="lib\net452"/>
-    <file src="..\src\MicrOrm\bin\Release\MicrOrm.pdb" target ="lib\net452"/>
+    <file src="..\src\MicrOrm\bin\Release\MicrOrm.dll" target ="lib\net451"/>
+    <file src="..\src\MicrOrm\bin\Release\MicrOrm.pdb" target ="lib\net451"/>
   </files>
 </package>
