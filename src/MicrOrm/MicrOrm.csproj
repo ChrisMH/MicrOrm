@@ -72,8 +72,8 @@
       <HintPath>..\packages\Utility.0.7.1.5\lib\net451\Utility.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Utility.Database, Version=0.20.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Utility.Database.0.20.0.5\lib\net451\Utility.Database.dll</HintPath>
+    <Reference Include="Utility.Database, Version=0.20.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Utility.Database.0.20.1.0\lib\net451\Utility.Database.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
