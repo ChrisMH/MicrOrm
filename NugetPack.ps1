@@ -6,7 +6,7 @@
 $versionFile = '.\src\SharedAssemblyInfo.cs'
 
 $buildConfiguration = 'Release'
-$outputPath = "$home\Dropbox\Packages"
+$outputPath = Join-Path $HOME "Dropbox\Packages"
 
 Import-Module BuildUtilities
 
