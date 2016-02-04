@@ -1,8 +1,8 @@
 [string[]] $buildFiles = 
-  '.\src\MicrOrm\MicrOrm40.csproj',
-  '.\src\MicrOrm\MicrOrm45.csproj',
-  '.\src\MicrOrm\MicrOrm451.csproj',
-  '.\src\MicrOrm\MicrOrm452.csproj'
+  '.\src\MicrOrm40\MicrOrm40.csproj',
+  '.\src\MicrOrm45\MicrOrm45.csproj',
+  '.\src\MicrOrm451\MicrOrm451.csproj',
+  '.\src\MicrOrm452\MicrOrm452.csproj'
 [string[]] $nuspecFiles = 
   '.\nuspec\MicrOrm.nuspec'
   
@@ -17,15 +17,14 @@ $version = Get-Version (Resolve-Path $versionFile)
   
 New-Path $outputPath
 
-#foreach($buildFile in $buildFiles)
-#{
-#  Invoke-Build (Resolve-Path $buildFile) $buildConfiguration
-#}
-
-foreach($nuspecFile in $nuspecFiles)
+foreach($buildFile in $buildFiles)
 {
-  New-Package (Resolve-Path $nuspecFile) $version $outputPath
+  Invoke-Build (Resolve-Path $buildFile) 'Debug'
+  Invoke-Build (Resolve-Path $buildFile) 'Release'
 }
+
+New-Package (Resolve-Path '.\nuspec\MicrOrm.nuspec') $version $outputPath
+New-Package (Resolve-Path '.\nuspec\MicrOrm.Debug.nuspec') "$version-debug" $outputPath
 
 Remove-Module BuildUtilities
 
