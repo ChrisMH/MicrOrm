@@ -1,7 +1,7 @@
 ﻿using System;
 using MicrOrm.Core;
 using NUnit.Framework;
-using Utility.Database;
+using Buddy.Database;
 
 namespace MicrOrm.PostgreSql.Test
 {

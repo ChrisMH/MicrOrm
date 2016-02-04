@@ -24,9 +24,9 @@ namespace MicrOrm.PostgreSql.Test
         Assert.AreEqual(7, result.Count);
         foreach (var row in result)
         {
-          Assert.NotNull(row.Id);
-          Assert.NotNull(row.Name);
-          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email ?? "NULL");
+          Assert.NotNull(row["Id"]);
+          Assert.NotNull(row["Name"]);
+          Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
         }
       }
     }
@@ -43,9 +43,9 @@ namespace MicrOrm.PostgreSql.Test
 
         foreach (var row in result)
         {
-          Assert.NotNull(row.Id);
-          Assert.NotNull(row.Name);
-          Console.WriteLine("{0}, {1}, {2}", row.Id, row.Name, row.Email ?? "NULL");
+          Assert.NotNull(row["Id"]);
+          Assert.NotNull(row["Name"]);
+          Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
         }
       }
     }
@@ -62,8 +62,8 @@ namespace MicrOrm.PostgreSql.Test
 
         foreach (var row in result)
         {
-          Assert.NotNull(row.Name);
-          Console.WriteLine("{0}, {1}", row.Name, row.Email ?? "NULL");
+          Assert.NotNull(row["Name"]);
+          Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
         }
       }
     }
@@ -80,8 +80,8 @@ namespace MicrOrm.PostgreSql.Test
 
         foreach (var row in result)
         {
-          Assert.NotNull(row.Name);
-          Console.WriteLine("{0}, {1}", row.Name, row.Email ?? "NULL");
+          Assert.NotNull(row["Name"]);
+          Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
         }
       }
     }

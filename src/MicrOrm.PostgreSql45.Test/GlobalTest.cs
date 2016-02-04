@@ -1,8 +1,8 @@
 ﻿using System;
 using MicrOrm.Core;
 using NUnit.Framework;
-using Utility.Database;
-using Utility.Database.PostgreSql;
+using Buddy.Database;
+using Buddy.Database.PostgreSql;
 
 namespace MicrOrm.PostgreSql.Test
 {
@@ -33,7 +33,7 @@ namespace MicrOrm.PostgreSql.Test
       }
       catch (Exception e)
       {
-        Logger.FatalException(string.Format("SetUp : {0} : {1}", e.GetType(), e.Message), e);
+        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
         throw;
       }
     }
@@ -48,7 +48,7 @@ namespace MicrOrm.PostgreSql.Test
       }
       catch (Exception e)
       {
-        Logger.FatalException(string.Format("SetUp : {0} : {1}", e.GetType(), e.Message), e);
+        Logger.Fatal(e, "SetUp : {0} : {1}", e.GetType(), e.Message);
         throw;
       }
     }

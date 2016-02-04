@@ -1,5 +1,8 @@
 [string[]] $buildFiles = 
-  '.\src\MicrOrm\MicrOrm.csproj'
+  '.\src\MicrOrm\MicrOrm40.csproj',
+  '.\src\MicrOrm\MicrOrm45.csproj',
+  '.\src\MicrOrm\MicrOrm451.csproj',
+  '.\src\MicrOrm\MicrOrm452.csproj'
 [string[]] $nuspecFiles = 
   '.\nuspec\MicrOrm.nuspec'
   

@@ -31,38 +31,43 @@ namespace MicrOrm.Test
     }
 
     [Test]
-    public void MapRowToDynamic()
+    public void MapRowToDictionary()
     { 
       var rdr = MoqIDataReader.Create(mockTable);
       rdr.Read();
 
-      var result = FieldMapping.MapRowToDynamic(rdr);
+      var result = FieldMapping.MapRowToDictionary(rdr);
 
       Assert.NotNull(result);
       
-      Assert.AreEqual(1, result.ShortValue);
-      Assert.IsInstanceOf(typeof(Int16), result.ShortValue);
+      Assert.AreEqual(1, result["ShortValue"]);
+      Assert.IsInstanceOf(typeof(Int16), result["ShortValue"]);
 
-      Assert.AreEqual(1, result.IntValue);
-      Assert.IsInstanceOf(typeof(Int32), result.IntValue);
-      
-      Assert.AreEqual(1, result.LongValue);
-      Assert.IsInstanceOf(typeof(Int64), result.LongValue);
-      
-      Assert.AreEqual(1f, result.SingleValue);
-      Assert.IsInstanceOf(typeof(Single), result.SingleValue);
-      
-      Assert.AreEqual(1.0, result.DoubleValue);
-      Assert.IsInstanceOf(typeof(Double), result.DoubleValue);
+      Assert.AreEqual(1, result["IntValue"]);
+      Assert.IsInstanceOf(typeof(Int32), result["IntValue"]);
 
-      Assert.AreEqual("one", result.StringValue);
-      Assert.IsInstanceOf(typeof(String), result.StringValue);
-      
-      Assert.AreEqual(true, result.BoolValue);
-      Assert.IsInstanceOf(typeof(String), result.StringValue);
-      
-      Assert.AreEqual(DateTime.Parse("2011.01.01 12:01:01"), result.DateTimeValue);
-      Assert.IsInstanceOf(typeof(DateTime), result.DateTimeValue);
+
+      Assert.AreEqual(1, result["LongValue"]);
+      Assert.IsInstanceOf(typeof(Int64), result["LongValue"]);
+
+
+      Assert.AreEqual(1f, result["SingleValue"]);
+      Assert.IsInstanceOf(typeof(Single), result["SingleValue"]);
+
+
+      Assert.AreEqual(1.0, result["DoubleValue"]);
+      Assert.IsInstanceOf(typeof(Double), result["DoubleValue"]);
+
+      Assert.AreEqual("one", result["StringValue"]);
+      Assert.IsInstanceOf(typeof(String), result["StringValue"]);
+
+
+      Assert.AreEqual(true, result["BoolValue"]);
+      Assert.IsInstanceOf(typeof(String), result["StringValue"]);
+
+
+      Assert.AreEqual(DateTime.Parse("2011.01.01 12:01:01"), result["DateTimeValue"]);
+      Assert.IsInstanceOf(typeof(DateTime), result["DateTimeValue"]);
     }
 
     private readonly MockRow[] mockTable =

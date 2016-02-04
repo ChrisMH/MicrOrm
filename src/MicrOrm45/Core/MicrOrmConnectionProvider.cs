@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Utility.Database;
+using Buddy.Database;
 
 namespace MicrOrm.Core
 {

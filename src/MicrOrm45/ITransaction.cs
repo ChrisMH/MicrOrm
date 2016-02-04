@@ -7,7 +7,6 @@ namespace MicrOrm
   {
     void Commit();
     void Rollback();
-
     IDbTransaction Transaction { get; }
 
   }
