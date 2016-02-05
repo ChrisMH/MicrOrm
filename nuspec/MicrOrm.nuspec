@@ -11,15 +11,19 @@
     <copyright>Copyright 2011</copyright>
     <tags>Database ORM</tags>
     <dependencies>
-      <dependency id="Buddy" version="1.0.2"/>
-      <dependency id="Buddy.Database" version="1.0.2.2"/>
+      <dependency id="Buddy" version="1.0.2.1"/>
+      <dependency id="Buddy.Database" version="1.0.2.3"/>
       <dependency id="NLog" version="4.2.3"/>
     </dependencies>
   </metadata>
   <files>
     <file src="..\src\MicrOrm40\bin\Release\MicrOrm.dll" target ="lib\net40"/>
+    <file src="..\src\MicrOrm40\bin\Release\MicrOrm.pdb" target ="lib\net40"/>
     <file src="..\src\MicrOrm45\bin\Release\MicrOrm.dll" target ="lib\net45"/>
+    <file src="..\src\MicrOrm45\bin\Release\MicrOrm.pdb" target ="lib\net45"/>
     <file src="..\src\MicrOrm451\bin\Release\MicrOrm.dll" target ="lib\net451"/>
+    <file src="..\src\MicrOrm451\bin\Release\MicrOrm.pdb" target ="lib\net451"/>
     <file src="..\src\MicrOrm452\bin\Release\MicrOrm.dll" target ="lib\net452"/>
+    <file src="..\src\MicrOrm452\bin\Release\MicrOrm.pdb" target ="lib\net452"/>
   </files>
 </package>
