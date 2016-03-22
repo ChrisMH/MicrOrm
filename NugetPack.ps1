@@ -2,7 +2,9 @@
   '.\src\MicrOrm40\MicrOrm40.csproj',
   '.\src\MicrOrm45\MicrOrm45.csproj',
   '.\src\MicrOrm451\MicrOrm451.csproj',
-  '.\src\MicrOrm452\MicrOrm452.csproj'
+  '.\src\MicrOrm452\MicrOrm452.csproj',
+  '.\src\MicrOrm46\MicrOrm46.csproj',
+  '.\src\MicrOrm461\MicrOrm461.csproj'
 [string[]] $nuspecFiles = 
   '.\nuspec\MicrOrm.nuspec'
   
