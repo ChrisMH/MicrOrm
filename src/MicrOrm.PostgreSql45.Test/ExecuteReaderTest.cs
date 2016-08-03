@@ -5,94 +5,115 @@ using NUnit.Framework;
 
 namespace MicrOrm.PostgreSql.Test
 {
-  public class ExecuteReaderTest
-  {
-    [SetUp]
-    public void SetUp()
+    public class ExecuteReaderTest
     {
-      GlobalTest.TestDb.Seed();
-    }
-
-    [Test]
-    public void CanExecuteReaderForSimpleSelect()
-    {
-      using (var db = GlobalTest.ConnectionProvider.Database)
-      {
-        var result = db.ExecuteReader("SELECT * FROM test.user").ToList();
-
-        Assert.NotNull(result);
-        Assert.AreEqual(7, result.Count);
-        foreach (var row in result)
+        [SetUp]
+        public void SetUp()
         {
-          Assert.NotNull(row["Id"]);
-          Assert.NotNull(row["Name"]);
-          Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
+            GlobalTest.TestDb.Seed();
         }
-      }
-    }
 
-    [Test]
-    public void CanExecuteReaderForParameterizedSelect()
-    {
-      using (var db = GlobalTest.ConnectionProvider.Database)
-      {
-        var result = db.ExecuteReader("SELECT * FROM test.user WHERE name=:p0", "Bob").ToList();
-
-        Assert.NotNull(result);
-        Assert.AreEqual(2, result.Count);
-
-        foreach (var row in result)
+        [Test]
+        public void CanExecuteReaderForSimpleSelect()
         {
-          Assert.NotNull(row["Id"]);
-          Assert.NotNull(row["Name"]);
-          Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                var result = db.ExecuteReader("SELECT * FROM test.user").ToList();
+
+                Assert.NotNull(result);
+                Assert.AreEqual(7, result.Count);
+                foreach (var row in result)
+                {
+                    Assert.NotNull(row["Id"]);
+                    Assert.NotNull(row["Name"]);
+                    Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
+                }
+            }
         }
-      }
-    }
 
-    [Test]
-    public void CanExecuteReaderForFunction()
-    {
-      using (var db = GlobalTest.ConnectionProvider.Database)
-      {
-        var result = db.ExecuteReader("SELECT * FROM test.get_users()").ToList();
-
-        Assert.NotNull(result);
-        Assert.AreEqual(7, result.Count);
-
-        foreach (var row in result)
+        [Test]
+        public void CanExecuteReaderForParameterizedSelect()
         {
-          Assert.NotNull(row["Name"]);
-          Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                var result = db.ExecuteReader("SELECT * FROM test.user WHERE name=:p0", "Bob").ToList();
+
+                Assert.NotNull(result);
+                Assert.AreEqual(2, result.Count);
+
+                foreach (var row in result)
+                {
+                    Assert.NotNull(row["Id"]);
+                    Assert.NotNull(row["Name"]);
+                    Console.WriteLine("{0}, {1}, {2}", row["Id"], row["Name"], row["Email"] ?? "NULL");
+                }
+            }
         }
-      }
-    }
 
-    [Test]
-    public void CanExecuteReaderForParameterizedFunction()
-    {
-      using (var db = GlobalTest.ConnectionProvider.Database)
-      {
-        var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", (object)new string[] {"Fred", "Ed"}).ToList();
-
-        Assert.NotNull(result);
-        Assert.AreEqual(2, result.Count);
-
-        foreach (var row in result)
+        [Test]
+        public void CanExecuteReaderForFunction()
         {
-          Assert.NotNull(row["Name"]);
-          Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
-        }
-      }
-    }
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                var result = db.ExecuteReader("SELECT * FROM test.get_users()").ToList();
 
-    [Test]
-    public void ExecuteReaderWithNullParameterThrows()
-    {
-      using (var db = GlobalTest.ConnectionProvider.Database)
-      {
-        Assert.Throws<MicrOrmException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
-      }
+                Assert.NotNull(result);
+                Assert.AreEqual(7, result.Count);
+
+                foreach (var row in result)
+                {
+                    Assert.NotNull(row["Name"]);
+                    Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
+                }
+            }
+        }
+
+        [Test]
+        public void CanExecuteReaderForParameterizedFunction()
+        {
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                var result = db.ExecuteReader("SELECT * FROM test.get_users(:p0)", (object) new string[] {"Fred", "Ed"}).ToList();
+
+                Assert.NotNull(result);
+                Assert.AreEqual(2, result.Count);
+
+                foreach (var row in result)
+                {
+                    Assert.NotNull(row["Name"]);
+                    Console.WriteLine("{0}, {1}", row["Name"], row["Email"] ?? "NULL");
+                }
+            }
+        }
+
+        [Test]
+        public void ExecuteReaderWithNullParameterThrows()
+        {
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                Assert.Throws<MicrOrmException>(() => db.ExecuteReader("SELECT * FROM test.user WHERE email=:p0", null).ToList());
+            }
+        }
+
+        [Test]
+        public void CanExecuteReaderForArray()
+        {
+            using (var db = GlobalTest.ConnectionProvider.Database)
+            {
+                var result = db.ExecuteReader(
+                    @"SELECT name, 
+                             ARRAY(SELECT role_id FROM test.link_user_role WHERE user_id=u.id) AS role_ids 
+                             FROM test.user AS u").ToList();
+
+                Assert.NotNull(result);
+                Assert.AreEqual(7, result.Count);
+
+                foreach (var row in result)
+                {
+                    //Assert.NotNull(row["Name"]);
+                    Console.WriteLine("{0}, {1}", row["Name"], row["RoleIds"]);
+                }
+            }
+        }
     }
-  }
 }

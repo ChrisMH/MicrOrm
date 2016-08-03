@@ -1,5 +1,14 @@
 CREATE SCHEMA test;
 
+CREATE TABLE test.role
+(
+	id serial NOT NULL,
+	name varchar NOT NULL,
+	
+    CONSTRAINT pk_role PRIMARY KEY(id)
+);
+
+
 CREATE TABLE test.user
 (
   id serial NOT NULL,
@@ -8,6 +17,25 @@ CREATE TABLE test.user
 
   CONSTRAINT pk_user PRIMARY KEY(id)
 );
+
+CREATE TABLE test.link_user_role
+(
+  id serial NOT NULL,
+  user_id int NOT NULL,
+  role_id int NOT NULL
+);
+
+
+ALTER TABLE test.link_user_role
+  ADD CONSTRAINT fkey_link_user_role_user_id FOREIGN KEY (user_id)
+      REFERENCES test.user(id)
+      ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE test.link_user_role
+  ADD CONSTRAINT fkey_link_user_role_role_id FOREIGN KEY (role_id)
+      REFERENCES test.role(id)
+      ON UPDATE CASCADE ON DELETE CASCADE;
+
 
 
 CREATE FUNCTION test.get_users()

@@ -38,12 +38,12 @@
       <HintPath>..\packages\Buddy.1.0.2.2\lib\net45\Buddy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Buddy.Database, Version=1.0.2.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Buddy.Database.1.0.2.4\lib\net45\Buddy.Database.dll</HintPath>
+    <Reference Include="Buddy.Database, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Buddy.Database.1.0.3.0\lib\net45\Buddy.Database.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Buddy.Database.PostgreSql, Version=1.0.2.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Buddy.Database.PostgreSql.1.0.2.4\lib\net45\Buddy.Database.PostgreSql.dll</HintPath>
+    <Reference Include="Buddy.Database.PostgreSql, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Buddy.Database.PostgreSql.1.0.3.0\lib\net45\Buddy.Database.PostgreSql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">

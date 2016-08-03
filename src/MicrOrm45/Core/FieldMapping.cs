@@ -12,7 +12,7 @@ namespace MicrOrm.Core
             var row = new Dictionary<string, object>();
             for (var i = 0; i < rdr.FieldCount; i++)
             {
-                row.Add(MapFieldNameToFriendlyName(rdr.GetName(i)), rdr.IsDBNull(i) ? null : Convert.ChangeType(rdr[i], rdr.GetFieldType(i)));
+                row.Add(MapFieldNameToFriendlyName(rdr.GetName(i)), rdr.IsDBNull(i) ? null : rdr[i]);// Convert.ChangeType(rdr[i], rdr.GetFieldType(i)));
             }
             return row;
         }

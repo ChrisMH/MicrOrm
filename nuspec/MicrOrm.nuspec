@@ -13,7 +13,7 @@
         <tags>Database ORM</tags>
         <dependencies>
             <dependency id="Buddy" version="1.0.2.2" />
-            <dependency id="Buddy.Database" version="1.0.2.4" />
+            <dependency id="Buddy.Database" version="1.0.3.0" />
             <dependency id="NLog" version="4.2.3" />
         </dependencies>
     </metadata>
