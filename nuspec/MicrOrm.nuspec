@@ -19,10 +19,16 @@
     </metadata>
     <files>
         <file src="..\src\MicrOrm40\bin\Release\MicrOrm.dll" target="lib\net40" />
+        <file src="..\src\MicrOrm40\bin\Release\MicrOrm.pdb" target="lib\net40" />
         <file src="..\src\MicrOrm45\bin\Release\MicrOrm.dll" target="lib\net45" />
+        <file src="..\src\MicrOrm45\bin\Release\MicrOrm.pdb" target="lib\net45" />
         <file src="..\src\MicrOrm451\bin\Release\MicrOrm.dll" target="lib\net451" />
+        <file src="..\src\MicrOrm451\bin\Release\MicrOrm.pdb" target="lib\net451" />
         <file src="..\src\MicrOrm452\bin\Release\MicrOrm.dll" target="lib\net452" />
+        <file src="..\src\MicrOrm452\bin\Release\MicrOrm.pdb" target="lib\net452" />
         <file src="..\src\MicrOrm46\bin\Release\MicrOrm.dll" target="lib\net46" />
+        <file src="..\src\MicrOrm46\bin\Release\MicrOrm.pdb" target="lib\net46" />
         <file src="..\src\MicrOrm461\bin\Release\MicrOrm.dll" target="lib\net461" />
+        <file src="..\src\MicrOrm461\bin\Release\MicrOrm.pdb" target="lib\net461" />
     </files>
 </package>
