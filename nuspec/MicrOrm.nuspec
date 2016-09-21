@@ -7,6 +7,8 @@
         <title>MicrOrm</title>
         <authors>Chris Hogan</authors>
         <owners>Chris Hogan</owners>
+        <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+        <projectUrl>https://github.com/ChrisMH/MicrOrm</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Database access without the ORM</description>
         <copyright>Copyright 2011</copyright>

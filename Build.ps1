@@ -45,8 +45,6 @@ $nuspecPath = ".\nuspec"                # relative to script directory
 $versionFile = 'SharedAssemblyInfo.cs'  # relative to $srcRoot
 
 $repository = "https://nuget.org/api/v2/package"
-$apiKey = "f1d4a9f9-fceb-43ca-a972-538a4f7accdd"
-
 
 $buildCmd = "$env:windir\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
 $nugetCmd = "${Env:ProgramFiles(x86)}\nuget\nuget.exe"
@@ -139,7 +137,7 @@ if($args -contains "-Push")
 
         Write-Host "`nPushing $packageFile...`n" -ForegroundColor Green
 
-        &$nugetCmd push $packageFile $apiKey -Source $repository
+        &$nugetCmd push $packageFile -Source $repository
     }
 }
 
