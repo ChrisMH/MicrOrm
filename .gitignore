@@ -2,9 +2,4 @@ obj/
 bin/
 build/
 out/
-packages/
 *.csproj.user
-*.suo
-*.ReSharper.user
-*.DotSettings.user
-*.dotCover
