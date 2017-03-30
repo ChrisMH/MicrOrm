@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace MicrOrm
+﻿namespace MicrOrm
 {
-  public interface IDatabase : IDataStrategy
-  {
-  }
+    public interface IDatabase : IDataStrategy
+    {
+    }
 }

@@ -14,9 +14,11 @@
         <copyright>Copyright 2011</copyright>
         <tags>Database ORM</tags>
         <dependencies>
-            <dependency id="Buddy" version="1.7" />
-            <dependency id="Buddy.Database" version="1.3" />
-            <dependency id="NLog" version="4.3" />
+            <dependency id="Buddy" version="1.12" />
+            <dependency id="Buddy.Database" version="1.4" />
+            <dependency id="NLog" version="4.4" />
+            <dependency id="Newtonsoft.Json" version="10.0" />
+            <dependency id="System.Linq.Dynamic" version="1.0" />
         </dependencies>
     </metadata>
     <files>

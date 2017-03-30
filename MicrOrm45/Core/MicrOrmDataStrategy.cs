@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -19,7 +20,7 @@ namespace MicrOrm.Core
             Connection.Close();
         }
 
-        public IEnumerable<IDictionary<string, object>> ExecuteReader(string sql, params object[] parameters)
+        public IEnumerable<IDataRecord> ExecuteReader(string sql, params object[] parameters)
         {
             using (var cmd = CreateCommand())
             {
@@ -27,9 +28,9 @@ namespace MicrOrm.Core
                 MicrOrmLogger.LogCommand(cmd);
                 using (var rdr = cmd.ExecuteReader())
                 {
-                    while (rdr.Read())
+                    foreach (IDataRecord record in rdr as IEnumerable)
                     {
-                        yield return FieldMapping.MapRowToDictionary(rdr);
+                        yield return record;
                     }
                 }
             }

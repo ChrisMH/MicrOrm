@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
+﻿using System.Data;
 
 namespace MicrOrm.Core
 {
-  public class MicrOrmDatabase : MicrOrmDataStrategy, IDatabase
-  {
-    public MicrOrmDatabase(IConnectionProvider connectionProvider)
-    : base(connectionProvider)
+    public class MicrOrmDatabase : MicrOrmDataStrategy, IDatabase
     {
-      
-    }
+        public MicrOrmDatabase(IConnectionProvider connectionProvider)
+            : base(connectionProvider)
+        {
+        }
 
-    protected override IDbCommand CreateCommand()
-    {
-      return Connection.CreateCommand();
+        protected override IDbCommand CreateCommand()
+        {
+            return Connection.CreateCommand();
+        }
     }
-  }
 }
