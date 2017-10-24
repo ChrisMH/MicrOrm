@@ -39,7 +39,7 @@ namespace MicrOrm.Test
             sw.Start();
 
             var result = new List<VehicleHistoryReportModel>();
-            using (var conn = new NpgsqlConnection("host=odb.logikos.com;port=21000;database=protechs;username=ptuser;password=pt0917;ConvertInfinityDateTime=true"))
+            using (var conn = new NpgsqlConnection("host=odb.logikos.com;port=21100;database=protechs;username=ptuser;password=pt0917;ConvertInfinityDateTime=true"))
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(query, conn))
@@ -66,7 +66,7 @@ namespace MicrOrm.Test
         public void TestLargeQuery()
         {
             var connection = new MicrOrmConnectionProvider(
-                "host=odb.logikos.com;port=21000;database=protechs;username=ptuser;password=pt0917;ConvertInfinityDateTime=true",
+                "host=odb.logikos.com;port=21100;database=protechs;username=ptuser;password=pt0917;ConvertInfinityDateTime=true",
                 "Npgsql.NpgsqlFactory, Npgsql");
 
             var query =
